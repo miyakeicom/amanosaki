@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>人生崩壊度診断 | 天野紗希</title>
+<meta name="description" content="5つの質問で「今あなたがどこにいるか」を星の視点から診断。惑星データ解析者・天野紗希が星の視点から解説。">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFBFC;--bg2:#FFF0F3;--rose:#C8566B;--rose2:#A8425A;--rose-light:#F2D0D6;--t:#2D2030;--t2:#4A3F55;--t3:#7A7088;--t4:#A098AC;--sf:'Shippori Mincho',serif;--sn:'Zen Kaku Gothic New',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sn);background:var(--bg);color:var(--t);line-height:1.8;min-height:100vh}
+.wrap{max-width:520px;margin:0 auto;padding:24px 20px 60px}
+h1{font-family:var(--sf);font-size:24px;font-weight:600;text-align:center;line-height:1.5;margin-bottom:4px}
+.sub{text-align:center;font-size:11px;color:var(--t4);margin-bottom:32px;letter-spacing:1px}
+.brand{text-align:center;font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:16px}
+
+/* Progress */
+.prog-wrap{margin-bottom:28px}
+.prog-bar{height:3px;background:var(--rose-light);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--rose);border-radius:2px;transition:width .4s ease}
+.prog-text{font-size:10px;color:var(--t4);text-align:right;margin-top:4px}
+
+/* Question */
+.q-screen{display:none;animation:fadeUp .4s ease}
+.q-screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.q-num{font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:8px}
+.q-text{font-family:var(--sf);font-size:18px;font-weight:500;margin-bottom:24px;line-height:1.6}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:14px 18px;background:#fff;border:1px solid rgba(200,86,107,.08);border-radius:12px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .25s;line-height:1.6;text-align:left}
+.choice:hover{border-color:rgba(200,86,107,.3);background:var(--bg2)}
+.choice:active,.choice.selected{border-color:var(--rose);background:rgba(200,86,107,.06);color:var(--t)}
+
+/* Result */
+#result{display:none;animation:fadeUp .5s ease}
+.result-level{text-align:center;margin-bottom:24px}
+.result-icon{font-size:48px;margin-bottom:12px}
+.result-label{font-size:10px;letter-spacing:3px;color:var(--rose);margin-bottom:4px}
+.result-title{font-family:var(--sf);font-size:22px;font-weight:600;line-height:1.5}
+.result-meter{margin:20px 0;height:8px;background:var(--rose-light);border-radius:4px;overflow:hidden}
+.result-meter-fill{height:100%;border-radius:4px;transition:width 1s ease .3s}
+.result-body{font-size:13px;color:var(--t2);line-height:2.2;margin-bottom:28px}
+.result-body strong{color:var(--rose)}
+.result-star{background:var(--bg2);border-radius:14px;padding:20px;border:1px solid rgba(200,86,107,.06);margin-bottom:28px;font-size:12px;color:var(--t2);line-height:2}
+.result-star-label{font-size:10px;color:var(--rose);letter-spacing:2px;margin-bottom:8px}
+
+.cta-box{background:#fff;border-radius:16px;padding:28px 24px;border:1px solid rgba(200,86,107,.08);text-align:center;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.03)}
+.cta-box p{font-size:12px;color:var(--t3);margin-bottom:16px;line-height:1.8}
+.btn-primary{display:inline-block;padding:14px 32px;border-radius:30px;border:0;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:2px;text-decoration:none;font-family:var(--sn);transition:all .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,86,107,.2)}
+.btn-secondary{display:inline-block;padding:12px 28px;border-radius:30px;border:1px solid rgba(200,86,107,.25);background:rgba(200,86,107,.04);color:var(--rose);font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;font-family:var(--sn);transition:.3s}
+.btn-secondary:hover{border-color:rgba(200,86,107,.5);background:rgba(200,86,107,.08)}
+
+.retry{text-align:center;margin-top:20px}
+.retry a{font-size:11px;color:var(--t4);cursor:pointer;text-decoration:underline}
+
+.share-btns{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.share-btn{padding:8px 16px;border-radius:20px;font-size:11px;font-weight:500;text-decoration:none;transition:.3s}
+.share-x{background:#000;color:#fff}.share-x:hover{opacity:.8}
+.share-line{background:#06C755;color:#fff}.share-line:hover{opacity:.8}
+.share-threads{background:#000;color:#fff}.share-threads:hover{opacity:.8}
+
+footer{text-align:center;padding:20px;font-size:9px;color:var(--t4)}
+footer a{color:var(--rose);text-decoration:none}
+</style>
+</head><body>
+
+<div class="wrap">
+<div class="brand">✦ AMANOSAKI</div>
+<h1 id="quiz-title"></h1>
+<div class="sub" id="quiz-sub"></div>
+
+<!-- Progress -->
+<div class="prog-wrap">
+<div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+<div class="prog-text" id="prog-text"></div>
+</div>
+
+<!-- Questions -->
+<div id="questions"></div>
+
+<!-- Result -->
+<div id="result">
+<div class="result-level">
+<div class="result-icon" id="r-icon"></div>
+<div class="result-label" id="r-label"></div>
+<div class="result-title" id="r-title"></div>
+</div>
+<div class="result-meter"><div class="result-meter-fill" id="r-meter" style="width:0%"></div></div>
+<div class="result-body" id="r-body"></div>
+<div class="result-star">
+<div class="result-star-label">✦ 星からのメッセージ</div>
+<div id="r-star"></div>
+</div>
+
+<div class="cta-box">
+<p>あなたの星の配線を、もっと詳しく読み解きます。<br>「なぜこうなったのか」「いつ終わるのか」——<br>答えは天体の周期が持っています。</p>
+<a href="https://note.com/amanosaki/n/nb0af26d5fbac" target="_blank" class="btn-primary">note記事を読む</a>
+</div>
+<div class="cta-box" style="background:var(--bg2)">
+<p>あなた専用の鑑定書をお届けします。</p>
+<a href="https://amanosaki.com/#kantei" class="btn-secondary">鑑定書を申し込む →</a>
+</div>
+
+<div class="share-btns" id="share-btns"></div>
+<div class="retry"><a onclick="location.reload()">もう一度診断する</a></div>
+</div>
+</div>
+
+<footer>✦ <a href="https://amanosaki.com">amanosaki.com</a> — 天野紗希｜惑星データ解析者</footer>
+
+<script>
+// ============================================================
+//  ★ ここを差し替えるだけで別テーマの診断が作れる ★
+// ============================================================
+var QUIZ = {
+  title: "人生崩壊度診断",
+  subtitle: "5つの質問で「今あなたがどこにいるか」を星の視点から診断",
+
+  questions: [
+    {
+      text: "今の生活で「コントロールできている」と感じることはどれくらいありますか？",
+      choices: [
+        { text: "ほとんどのことは自分で決められている", score: 1 },
+        { text: "仕事か家庭のどちらかは安定している", score: 2 },
+        { text: "何か一つ崩れると全部崩れそうな感覚がある", score: 3 },
+        { text: "すでに複数の問題が同時に起きている", score: 4 },
+        { text: "何もコントロールできない。流されるだけ", score: 5 }
+      ]
+    },
+    {
+      text: "朝起きたとき、最初に感じることは？",
+      choices: [
+        { text: "今日もやるか、という普通の感覚", score: 1 },
+        { text: "少し憂鬱だが、起き上がれる", score: 2 },
+        { text: "「また今日が始まる」という絶望感", score: 3 },
+        { text: "体が動かない。布団から出られない日がある", score: 4 },
+        { text: "目が覚めたこと自体がつらい", score: 5 }
+      ]
+    },
+    {
+      text: "「人生をやり直したい」と思うことはありますか？",
+      choices: [
+        { text: "特にない。今の人生に概ね満足", score: 1 },
+        { text: "たまに思うが、空想レベル", score: 2 },
+        { text: "真剣に考えることが増えた", score: 3 },
+        { text: "全てをリセットしたい。でも方法がわからない", score: 4 },
+        { text: "「やり直す」のではなく「消えたい」と思う", score: 5 }
+      ]
+    },
+    {
+      text: "崩壊の原因は何だと感じていますか？",
+      choices: [
+        { text: "特定の問題はない", score: 1 },
+        { text: "仕事か人間関係の一つに問題がある", score: 2 },
+        { text: "お金、仕事、家庭のうち2つ以上が同時に壊れた", score: 3 },
+        { text: "全部が連鎖的に崩れた。何が原因かわからない", score: 4 },
+        { text: "自分の存在自体が間違いだったと感じる", score: 5 }
+      ]
+    },
+    {
+      text: "助けを求められる人はいますか？",
+      choices: [
+        { text: "家族や友人に頼れる", score: 1 },
+        { text: "一人くらいはいるが、遠慮してしまう", score: 2 },
+        { text: "話は聞いてくれるが、解決にはならない", score: 3 },
+        { text: "誰にも言えない。恥ずかしい", score: 4 },
+        { text: "完全に孤立している。誰もいない", score: 5 }
+      ]
+    }
+  ],
+
+  results: [
+    {
+      min: 5, max: 9,
+      icon: "🌿",
+      label: "STABLE",
+      title: "今は安定しています",
+      meter: 15, meterColor: "#6BAF8D",
+      body: "現時点で崩壊の兆候は見られません。ただし<strong>天体のトランジットは予告なく風向きを変えます。</strong>土星の周期、冥王星の位置を知っておくだけで、次の嵐への備えになります。",
+      star: "あなたの太陽と土星のアスペクトは安定しています。ただし次の土星スクエアが来る時期を知っておくと、嵐が来ても慌てません。"
+    },
+    {
+      min: 10, max: 14,
+      icon: "🌤",
+      label: "SHAKING",
+      title: "地盤が揺れ始めています",
+      meter: 40, meterColor: "#D4A24C",
+      body: "一つの問題が他に波及しそうな段階です。<strong>これは「あなたが弱い」のではなく、天体が人生の構造を揺さぶっている時期</strong>です。土星のトランジットが「古い構造を壊す」サイクルに入っています。",
+      star: "土星があなたのアングル（人生の柱）にアスペクトを作っています。「今の構造では持たない」という天体からの警告。でもこれは「壊して作り直せ」のサインでもあります。"
+    },
+    {
+      min: 15, max: 19,
+      icon: "🌙",
+      label: "COLLAPSING",
+      title: "複数のことが同時に壊れています",
+      meter: 70, meterColor: "#C8566B",
+      body: "お金、仕事、家庭、健康。一つではなく複数が同時に崩れるのは、<strong>天体の「一斉清算」の時期</strong>だからです。あなたが無能なのではない。星の季節が変わっているのです。全部同時に壊れるのは、全部同時に作り直すためです。",
+      star: "冥王星があなたの太陽にハードアスペクトを形成しています。「人生の根底からの作り替え」を強制する配置。今が一番暗い。でもこの配置は「破壊と再生」をセットで持っています。再生の時期は出せます。"
+    },
+    {
+      min: 20, max: 25,
+      icon: "🌑",
+      label: "CRITICAL",
+      title: "あなたは今、人生の最深部にいます",
+      meter: 95, meterColor: "#8B2040",
+      body: "消えたいと思っていませんか。<strong>あなたの存在は間違いではありません。</strong>今あなたがいる場所は、天体の配置が作った「夜の底」です。でも星の時刻表には、必ず夜明けが書いてあります。一人で抱えないでください。まず声を出してください。",
+      star: "土星、冥王星、海王星があなたの主要天体に同時にアスペクトを形成しています。「人生のすべてが問い直される」配置。これは一生に一度しか来ない。つまり、この暗さも一度きりです。夜明けの日付は出せます。"
+    }
+  ],
+
+  shareText: function(r) {
+    return "人生崩壊度診断の結果は「" + r.title + "」でした。\n天野紗希の星の診断 → https://amanosaki.com/shindan/jinsei/";
+  }
+};
+//  ★ データここまで。以下は共通エンジン（触らなくてOK）★
+// ============================================================
+
+var currentQ = 0;
+var scores = [];
+var totalQ = QUIZ.questions.length;
+
+// Init
+document.getElementById('quiz-title').textContent = QUIZ.title;
+document.getElementById('quiz-sub').textContent = QUIZ.subtitle;
+document.title = QUIZ.title + ' | 天野紗希';
+
+// Build question screens
+var qContainer = document.getElementById('questions');
+QUIZ.questions.forEach(function(q, i) {
+  var screen = document.createElement('div');
+  screen.className = 'q-screen' + (i === 0 ? ' active' : '');
+  screen.id = 'q-' + i;
+
+  var html = '<div class="q-num">QUESTION ' + (i + 1) + ' / ' + totalQ + '</div>';
+  html += '<div class="q-text">' + q.text + '</div>';
+  html += '<div class="choices">';
+  q.choices.forEach(function(c, ci) {
+    html += '<div class="choice" data-q="' + i + '" data-score="' + c.score + '" onclick="selectChoice(this)">' + c.text + '</div>';
+  });
+  html += '</div>';
+  screen.innerHTML = html;
+  qContainer.appendChild(screen);
+});
+
+updateProgress();
+
+function updateProgress() {
+  var pct = Math.round((currentQ / totalQ) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = currentQ + ' / ' + totalQ;
+}
+
+function selectChoice(el) {
+  // Prevent double click
+  if (el.classList.contains('selected')) return;
+
+  // Visual feedback
+  var siblings = el.parentElement.children;
+  for (var i = 0; i < siblings.length; i++) siblings[i].style.pointerEvents = 'none';
+  el.classList.add('selected');
+
+  scores.push(parseInt(el.dataset.score));
+  currentQ++;
+
+  setTimeout(function() {
+    if (currentQ < totalQ) {
+      // Next question
+      document.getElementById('q-' + (currentQ - 1)).classList.remove('active');
+      document.getElementById('q-' + currentQ).classList.add('active');
+      updateProgress();
+    } else {
+      // Show result
+      showResult();
+    }
+  }, 400);
+}
+
+function showResult() {
+  document.getElementById('questions').style.display = 'none';
+  document.querySelector('.prog-wrap').style.display = 'none';
+
+  var total = scores.reduce(function(a, b) { return a + b; }, 0);
+  var result = null;
+  for (var i = 0; i < QUIZ.results.length; i++) {
+    if (total >= QUIZ.results[i].min && total <= QUIZ.results[i].max) {
+      result = QUIZ.results[i]; break;
+    }
+  }
+  if (!result) result = QUIZ.results[QUIZ.results.length - 1];
+
+  document.getElementById('r-icon').textContent = result.icon;
+  document.getElementById('r-label').textContent = result.label;
+  document.getElementById('r-title').textContent = result.title;
+  document.getElementById('r-body').innerHTML = result.body;
+  document.getElementById('r-star').textContent = result.star;
+
+  var meter = document.getElementById('r-meter');
+  meter.style.background = result.meterColor;
+  setTimeout(function() { meter.style.width = result.meter + '%'; }, 100);
+
+  // Share buttons
+  var shareText = QUIZ.shareText(result);
+  var encoded = encodeURIComponent(shareText);
+  var shareHtml = '';
+  shareHtml += '<a class="share-btn share-x" href="https://x.com/intent/tweet?text=' + encoded + '" target="_blank">Xでシェア</a>';
+  shareHtml += '<a class="share-btn share-threads" href="https://www.threads.net/intent/post?text=' + encoded + '" target="_blank">Threads</a>';
+  shareHtml += '<a class="share-btn share-line" href="https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://amanosaki.com/shindan/morahara/') + '" target="_blank">LINE</a>';
+  document.getElementById('share-btns').innerHTML = shareHtml;
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('prog-text').textContent = totalQ + ' / ' + totalQ;
+  document.querySelector('.prog-wrap').style.display = 'block';
+}
+</script>
+</body></html>
