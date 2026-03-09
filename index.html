@@ -5,6 +5,11 @@
 <meta property="og:description" content="「なぜ私だったのか」「いつ終わるのか」——出口の日付を、星で示します。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://amanosaki.com">
+<meta property="og:image" content="https://amanosaki.com/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="壊れかけた人の星を、読む。| 天野紗希">
+<meta name="twitter:description" content="出口の日付を、星で示します。">
+<meta name="twitter:image" content="https://amanosaki.com/ogp.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='70' text-anchor='middle' font-size='60'>✦</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -37,6 +42,8 @@ section{position:relative;padding:72px 24px}
 
 .cta-main{display:inline-block;padding:16px 40px;border-radius:30px;border:0;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:2px;text-decoration:none;font-family:var(--sn);transition:all .3s;box-shadow:0 4px 16px rgba(200,86,107,.18)}
 .cta-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,86,107,.22)}
+.cta-sub{display:inline-block;padding:14px 32px;border-radius:30px;border:1px solid rgba(200,86,107,.25);color:var(--rose);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;font-family:var(--sn);transition:.3s;letter-spacing:1px}
+.cta-sub:hover{border-color:rgba(200,86,107,.5);background:rgba(200,86,107,.08)}
 
 .usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
 .usp-item{padding:18px 10px}
@@ -52,16 +59,18 @@ section{position:relative;padding:72px 24px}
 .shindan-link{display:block;padding:12px 14px;background:#fff;border:1px solid rgba(200,86,107,.06);border-radius:10px;font-size:12px;color:var(--t2);transition:all .25s;line-height:1.5}
 .shindan-link:hover{border-color:rgba(200,86,107,.25);background:var(--bg2);color:var(--rose);transform:translateY(-1px)}
 
-.proof-card{background:var(--bg2);border-radius:12px;padding:18px;border:1px dashed rgba(200,86,107,.12);margin-bottom:10px}
-.proof-card p{font-size:12px;color:var(--t3);line-height:1.8}
-.proof-card .attr{font-size:10px;color:var(--t4);margin-top:6px}
+.menu-card{background:#fff;border-radius:14px;padding:28px 22px;text-align:center;border:1px solid rgba(200,86,107,.06);transition:all .3s}
+.menu-card:hover{box-shadow:0 4px 20px rgba(200,86,107,.08)}
+.menu-card.featured{border-color:rgba(200,86,107,.25);box-shadow:0 2px 16px rgba(200,86,107,.08)}
+.menu-price{font-family:var(--dp);font-size:36px;font-weight:700;margin:4px 0}
+.menu-label{font-size:10px;color:var(--t4);letter-spacing:2px}
+.menu-desc{font-size:11px;color:var(--t3);text-align:left;line-height:1.8;margin-top:14px}
+.menu-btn{display:inline-block;margin-top:16px;padding:10px 24px;border-radius:24px;font-size:11px;font-weight:600;letter-spacing:1px;transition:.3s;text-decoration:none}
 
 .pg{display:none;min-height:100vh;padding:100px 24px 60px;background:var(--bg)}.pg.on{display:block}
 .pg h1{font-size:22px;font-family:var(--sf);margin-bottom:20px}.pg h2{font-size:15px;margin:20px 0 6px;color:var(--t2)}
 .pg p,.pg li{font-size:13px;color:var(--t3);line-height:2;margin-bottom:6px}.pg ul{padding-left:18px}
 .bk{display:inline-block;margin-bottom:16px;font-size:12px;color:var(--rose);cursor:pointer}.bk:hover{text-decoration:underline}
-
-.fi{width:100%;padding:11px 14px;border-radius:10px;border:1px solid rgba(200,86,107,.12);background:#fff;color:var(--t);font-size:13px;outline:none;font-family:var(--sn);margin-bottom:12px}.fi:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(200,86,107,.06)}.fi::placeholder{color:var(--t5)}
 
 footer{padding:28px 24px;border-top:1px solid rgba(200,86,107,.06);background:var(--bg3);text-align:center}
 footer a:hover{color:var(--rose)}
@@ -73,6 +82,7 @@ footer a:hover{color:var(--rose)}
   .usp-grid{grid-template-columns:1fr;gap:0}
   .usp-item{padding:12px 10px;border-bottom:1px solid rgba(200,86,107,.04)}
   .shindan-grid{grid-template-columns:1fr}
+  .menu-grid{grid-template-columns:1fr!important}
   #N{padding:10px 16px}
 }
 </style></head><body>
@@ -94,23 +104,20 @@ footer a:hover{color:var(--rose)}
 
 <div id="M">
 
-<!-- ======== 1. HERO (PASONA) ======== -->
+<!-- ======== 1. HERO ======== -->
 <section id="H">
 <div style="max-width:540px;text-align:center">
 
-<!-- Problem: 具体的な場面1つ（森岡） -->
 <p class="fu" style="font-size:14px;color:var(--t3);line-height:2.2;animation-delay:.2s">
 日曜の朝、夫の足音で目が覚める。<br>
 <strong style="color:var(--t)">階段の音の重さで、今日の機嫌がわかる。</strong>
 </p>
 
-<!-- Agitate -->
 <p class="fu" style="font-size:13px;color:var(--t3);line-height:2.2;margin-top:16px;animation-delay:.4s">
 友達に言えば「考えすぎ」。カウンセラーは「あなたはどうしたいですか？」。<br>
 <strong style="color:var(--t)">誰も「いつ終わるか」を教えてくれない。</strong>
 </p>
 
-<!-- Solution -->
 <div class="fu" style="animation-delay:.6s">
 <div class="divider" style="margin:24px auto"></div>
 <h1 style="font-family:var(--sf);font-size:36px;font-weight:600;line-height:1.5;letter-spacing:1px">
@@ -118,13 +125,11 @@ footer a:hover{color:var(--rose)}
 </h1>
 </div>
 
-<!-- Narrow（ティール：これだけ言え） -->
 <p class="fu" style="font-size:13px;color:var(--t3);margin-top:16px;line-height:1.8;animation-delay:.8s">
 「なぜ私だったのか」を天体の配線で説明し、<br>
 「いつ終わるのか」を<strong style="color:var(--t)">日付ごと</strong>示します。
 </p>
 
-<!-- Action: CTA1つだけ（藤田） -->
 <div class="fu" style="margin-top:28px;animation-delay:1s">
 <a onclick="ss('shindan')" class="cta-main" style="cursor:pointer">無料で診断する</a>
 <div style="font-size:10px;color:var(--t4);margin-top:10px">✦ 5問・1分・登録不要</div>
@@ -133,7 +138,7 @@ footer a:hover{color:var(--rose)}
 </div>
 </section>
 
-<!-- ======== 2. USP（ティール：出口の日付一点突破） ======== -->
+<!-- ======== 2. USP ======== -->
 <section style="background:var(--bg2);border-top:1px solid rgba(200,86,107,.06);border-bottom:1px solid rgba(200,86,107,.06);padding:36px 24px">
 <div style="max-width:600px;margin:0 auto">
 <div class="usp-grid rv">
@@ -153,7 +158,7 @@ footer a:hover{color:var(--rose)}
 </div>
 </section>
 
-<!-- ======== 3. 天野の原体験（前田：3行） ======== -->
+<!-- ======== 3. ABOUT ======== -->
 <section id="about"><div class="ms">
 <div class="rv origin">
 <div class="sl">ABOUT</div>
@@ -164,7 +169,7 @@ footer a:hover{color:var(--rose)}
 </div>
 </div></section>
 
-<!-- ======== 4. 診断一覧（孫＋ブランソン：30本カテゴリ分け） ======== -->
+<!-- ======== 4. 診断一覧 ======== -->
 <section id="shindan"><div class="mx">
 <div style="text-align:center;margin-bottom:32px" class="rv">
 <div class="sl">DIAGNOSIS</div>
@@ -181,9 +186,9 @@ footer a:hover{color:var(--rose)}
 <a class="shindan-link" href="/shindan/keizaidv/">経済的DV度診断</a>
 <a class="shindan-link" href="/shindan/rikon/">離婚タイミング診断</a>
 <a class="shindan-link" href="/shindan/sexless/">セックスレス深刻度診断</a>
-<a class="shindan-link" href="/shindan/kamen/">夫婦仮面度診断</a>
+<a class="shindan-link" href="/shindan/kamen/">仮面夫婦度診断</a>
 <a class="shindan-link" href="/shindan/furin/">不倫リスク診断</a>
-<a class="shindan-link" href="/shindan/uwaki/">浮気されやすさ診断</a>
+<a class="shindan-link" href="/shindan/uwaki/">浮気リスク度診断</a>
 </div>
 </div>
 
@@ -214,7 +219,7 @@ footer a:hover{color:var(--rose)}
 <div class="rv">
 <div class="cat-title">🔒 家族の呪縛</div>
 <div class="shindan-grid">
-<a class="shindan-link" href="/shindan/dokushin/">毒親度診断</a>
+<a class="shindan-link" href="/shindan/dokuoya/">毒親度診断</a>
 <a class="shindan-link" href="/shindan/ac/">アダルトチルドレン度診断</a>
 </div>
 </div>
@@ -241,120 +246,85 @@ footer a:hover{color:var(--rose)}
 <a class="shindan-link" href="/shindan/alcohol/">アルコール依存リスク診断</a>
 <a class="shindan-link" href="/shindan/jinsei/">人生崩壊度診断</a>
 <a class="shindan-link" href="/shindan/jibunrashisa/">「自分の人生」生きてる度診断</a>
+<a class="shindan-link" href="/shindan/dokushin/">独身限界度診断</a>
 </div>
 </div>
 
 </div></section>
 
-<!-- ======== 5. お客様の声（小山：枠は必ず残せ） ======== -->
-<section style="background:var(--bg2);border-top:1px solid rgba(200,86,107,.06)"><div class="ms">
-<div style="text-align:center;margin-bottom:20px" class="rv">
-<div class="sl">VOICE</div>
-<h2 style="font-size:18px;font-weight:500;font-family:var(--sf)">鑑定を受けた方の声</h2>
-</div>
-<div class="proof-card rv">
-<p style="font-style:italic">「なぜ私がこの人と出会ったのか、初めて納得できました。出口の日付を見て、泣きました。」</p>
-<p class="attr">— 38歳・結婚12年目</p>
-</div>
-<div class="proof-card rv">
-<p style="font-style:italic">「カウンセラーには"あなたはどうしたいですか"としか言われなかった。天野さんは"いつ動くか"を教えてくれた。」</p>
-<p class="attr">— 42歳・離婚検討中</p>
-</div>
-<div class="proof-card rv">
-<p style="font-style:italic">「"あなたのせいじゃない、星の季節が変わっただけ"。この一言で10年分の自責が溶けました。」</p>
-<p class="attr">— 35歳</p>
-</div>
-<p class="rv" style="font-size:10px;color:var(--t4);text-align:center;margin-top:12px">※ ご本人の許可を得て掲載（詳細は個人情報保護のため変更）</p>
-<div class="rv" style="text-align:center;margin-top:24px">
-<a onclick="ss('kantei')" style="color:var(--rose);font-size:13px;font-weight:500;cursor:pointer;text-decoration:underline">あなたも鑑定を受けてみる →</a>
-</div>
-</div></section>
-
-<!-- ======== 6. 最終CTA + あなたのせいじゃない（樹木希林：最後に出す） ======== -->
+<!-- ======== 5. 最終CTA ======== -->
 <section><div class="ms" style="text-align:center">
 <div class="rv">
 <div style="font-size:28px;margin-bottom:14px;color:var(--rose)">✦</div>
 <p style="font-family:var(--sf);font-size:20px;line-height:1.7;margin-bottom:6px;font-weight:500">
 あなたのせいじゃない。<br>星の季節が変わっただけ。
 </p>
-<p style="font-size:12px;color:var(--t3);margin-bottom:24px">まずは1分の診断で確認するか、直接鑑定を申し込むか。</p>
+<p style="font-size:12px;color:var(--t3);margin-bottom:24px">診断結果をさらに深く読み解きたい方へ</p>
 <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-<a onclick="ss('shindan')" class="cta-main" style="cursor:pointer">診断一覧を見る</a>
-<a onclick="ss('kantei')" style="display:inline-block;padding:16px 32px;border-radius:30px;border:1px solid rgba(200,86,107,.25);color:var(--rose);font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sn);transition:.3s;letter-spacing:1px">鑑定を申し込む</a>
+<a onclick="ss('kantei')" class="cta-main" style="cursor:pointer">鑑定メニューを見る</a>
 </div>
 </div>
 </div></section>
 
-<!-- ======== 7. 鑑定メニュー＋申込フォーム ======== -->
+<!-- ======== 6. 鑑定メニュー（Coconala / STORES / note導線） ======== -->
 <section id="kantei" style="background:var(--bg2);border-top:1px solid rgba(200,86,107,.06)"><div class="mx">
-<div style="text-align:center;margin-bottom:28px" class="rv">
+<div style="text-align:center;margin-bottom:32px" class="rv">
 <div class="sl">SERVICE</div>
 <h2 style="font-size:20px;font-weight:500;font-family:var(--sf)">鑑定メニュー</h2>
 <p style="font-size:12px;color:var(--t3);margin-top:6px">診断では出せない「あなた専用の出口の日付」を、鑑定書でお届けします</p>
 </div>
 
-<div class="rv" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:480px;margin:0 auto 28px">
-<div style="background:#fff;border-radius:14px;padding:24px 18px;text-align:center;border:1px solid rgba(200,86,107,.06)">
-<div style="font-size:10px;color:var(--t4);letter-spacing:2px;margin-bottom:6px">一言鑑定書</div>
-<div style="font-family:var(--dp);font-size:32px;font-weight:700;color:var(--t)">¥3,000</div>
-<div style="font-size:10px;color:var(--t4);margin:4px 0 14px">PDF 2ページ</div>
-<div style="font-size:11px;color:var(--t3);text-align:left;line-height:1.8">
+<div class="rv menu-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:680px;margin:0 auto 28px">
+
+<!-- note -->
+<div class="menu-card">
+<div class="menu-label">読んで知る</div>
+<div class="menu-price" style="color:var(--t)">¥300</div>
+<div style="font-size:10px;color:var(--t4);margin-bottom:4px">note有料記事</div>
+<div class="menu-desc">
+<span style="color:var(--rose);font-size:9px">✓</span> 天体配線の基礎知識<br>
+<span style="color:var(--rose);font-size:9px">✓</span> 自分で星を読むヒント<br>
+<span style="color:var(--rose);font-size:9px">✓</span> まずは試しに読みたい方へ
+</div>
+<a href="https://note.com/amanosaki" target="_blank" class="menu-btn" style="background:rgba(200,86,107,.06);color:var(--rose);border:1px solid rgba(200,86,107,.15)">noteで読む →</a>
+</div>
+
+<!-- Coconala 一言鑑定 -->
+<div class="menu-card featured">
+<div style="background:var(--rose);color:#fff;font-size:8px;font-weight:700;padding:2px 8px;border-radius:8px;display:inline-block;letter-spacing:1px;margin-bottom:4px">人気</div>
+<div class="menu-label">星に聞く</div>
+<div class="menu-price" style="color:var(--rose)">¥1,000</div>
+<div style="font-size:10px;color:var(--t4);margin-bottom:4px">一言鑑定書（Coconala）</div>
+<div class="menu-desc">
 <span style="color:var(--rose);font-size:9px">✓</span> あなた専用の「一言」<br>
 <span style="color:var(--rose);font-size:9px">✓</span> 天体配置の解説<br>
-<span style="color:var(--rose);font-size:9px">✓</span> 出口の日付提示
+<span style="color:var(--rose);font-size:9px">✓</span> 出口の日付提示<br>
+<span style="color:var(--rose);font-size:9px">✓</span> PDF鑑定書をお届け
 </div>
+<!-- TODO: Coconala出品後にURL差替え -->
+<a href="https://coconala.com/" target="_blank" class="menu-btn" style="background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff">Coconalaで申込む →</a>
 </div>
-<div style="background:#fff;border-radius:14px;padding:24px 18px;text-align:center;border:1px solid rgba(200,86,107,.25)">
-<div style="background:var(--rose);color:#fff;font-size:8px;font-weight:700;padding:2px 8px;border-radius:8px;display:inline-block;letter-spacing:1px;margin-bottom:6px">おすすめ</div>
-<div style="font-size:10px;color:var(--t4);letter-spacing:2px;margin-bottom:6px">個別鑑定</div>
-<div style="font-family:var(--dp);font-size:32px;font-weight:700;color:var(--rose)">¥5,000</div>
-<div style="font-size:10px;color:var(--t4);margin:4px 0 14px">PDF＋個別メッセージ</div>
-<div style="font-size:11px;color:var(--t3);text-align:left;line-height:1.8">
-<span style="color:var(--rose);font-size:9px">✓</span> 一言鑑定書の全内容<br>
+
+<!-- STORES 本格鑑定 -->
+<div class="menu-card">
+<div class="menu-label">深く読む</div>
+<div class="menu-price" style="color:var(--t)">¥3,000</div>
+<div style="font-size:10px;color:var(--t4);margin-bottom:4px">本格鑑定書（STORES）</div>
+<div class="menu-desc">
+<span style="color:var(--rose);font-size:9px">✓</span> 一言鑑定の全内容<br>
 <span style="color:var(--rose);font-size:9px">✓</span> 相性・関係性の深掘り<br>
 <span style="color:var(--rose);font-size:9px">✓</span> 天野からの個別メッセージ<br>
 <span style="color:var(--rose);font-size:9px">✓</span> 質問1回対応
 </div>
-</div>
+<!-- TODO: STORES出品後にURL差替え -->
+<a href="https://amanosaki.stores.jp/" target="_blank" class="menu-btn" style="background:rgba(200,86,107,.06);color:var(--rose);border:1px solid rgba(200,86,107,.15)">STORESで申込む →</a>
 </div>
 
-<p class="rv" style="text-align:center;font-size:11px;color:var(--t4);margin-bottom:24px">
-note有料記事（¥3,980）をご購入の方は、一言鑑定書が特典として付きます。
-<a href="https://note.com/amanosaki/n/nb0af26d5fbac" target="_blank" style="color:var(--rose);text-decoration:underline">→ note記事はこちら</a>
+</div>
+
+<p class="rv" style="text-align:center;font-size:11px;color:var(--t4);margin-top:8px">
+※ 鑑定には生年月日（西暦）が必要です。出生時刻がわかるとより精密な鑑定が可能です。
 </p>
-
-<!-- 申込フォーム -->
-<div id="form" class="rv" style="background:#fff;border-radius:14px;padding:28px 24px;border:1px solid rgba(200,86,107,.06);max-width:480px;margin:0 auto">
-<div style="text-align:center;margin-bottom:18px">
-<div style="font-size:13px;font-weight:600;color:var(--t)">鑑定書お申し込み</div>
-<div style="font-size:10px;color:var(--t4);margin-top:2px">note購入者の特典申請もこちらから</div>
-</div>
-<form onsubmit="submitForm(event)">
-<label style="font-size:10px;color:var(--t4);letter-spacing:1px;display:block;margin-bottom:3px">お名前（ニックネーム可）<span style="color:var(--rose)"> *</span></label>
-<input type="text" placeholder="例：さき" class="fi" required id="f-name">
-<label style="font-size:10px;color:var(--t4);letter-spacing:1px;display:block;margin-bottom:3px">生年月日 <span style="color:var(--rose)">*</span></label>
-<div style="display:flex;gap:8px;margin-bottom:14px">
-<input type="number" placeholder="1987" class="fi" style="flex:1;margin:0" required id="f-year" min="1940" max="2010">
-<input type="number" placeholder="9" class="fi" style="width:60px;margin:0" required id="f-month" min="1" max="12">
-<input type="number" placeholder="18" class="fi" style="width:60px;margin:0" required id="f-day" min="1" max="31">
-</div>
-<label style="font-size:10px;color:var(--t4);letter-spacing:1px;display:block;margin-bottom:3px">ご希望メニュー <span style="color:var(--rose)">*</span></label>
-<select class="fi" required id="f-menu" style="-webkit-appearance:none;appearance:none">
-<option value="">選択してください</option>
-<option value="note特典">note購入特典（一言鑑定書）</option>
-<option value="一言鑑定書¥3,000">一言鑑定書 ¥3,000</option>
-<option value="個別鑑定¥5,000">個別鑑定 ¥5,000</option>
-</select>
-<label style="font-size:10px;color:var(--t4);letter-spacing:1px;display:block;margin-bottom:3px">note購入日（特典申請の方のみ）</label>
-<input type="text" placeholder="例：2026年3月8日" class="fi" id="f-notedate">
-<label style="font-size:10px;color:var(--t4);letter-spacing:1px;display:block;margin-bottom:3px">メールアドレス <span style="color:var(--rose)">*</span></label>
-<input type="email" placeholder="example@mail.com" class="fi" required id="f-email">
-<label style="font-size:10px;color:var(--t4);letter-spacing:1px;display:block;margin-bottom:3px">ご相談内容（簡単に）</label>
-<textarea class="fi" rows="3" placeholder="例：夫のモラハラに悩んでいます。出口の日付を知りたいです。" id="f-msg" style="resize:vertical"></textarea>
-<button type="submit" class="cta-main" style="width:100%;margin-top:4px;box-shadow:none;letter-spacing:3px">メールで申し込む</button>
-<p style="font-size:10px;color:var(--t4);margin-top:8px;text-align:center">※ メーラーが開きます。そのまま送信してください</p>
-</form>
-</div>
 
 </div></section>
 
@@ -373,25 +343,40 @@ note有料記事（¥3,980）をご購入の方は、一言鑑定書が特典と
 </div>
 
 <!-- LEGAL -->
-<div id="P-legal" class="pg"><div class="ms"><span class="bk" onclick="go('main')">← トップに戻る</span><h1>特定商取引法に基づく表記</h1><h2>事業者名</h2><p>天野紗希（運営：rynmoca Design）</p><h2>運営統括責任者</h2><p>菅原</p><h2>所在地</h2><p>〒150-0001 東京都渋谷区神宮前6丁目23番4号 桑野ビル2階<br><small style="color:var(--t4)">※バーチャルオフィスを利用</small></p><h2>電話番号</h2><p>請求があった場合は遅滞なく開示</p><h2>メールアドレス</h2><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="157c7b737a557478747b7a66747e7c3b767a78">[email&#160;protected]</a></p><h2>販売価格</h2><p>各サービスページに記載（税込）</p><h2>支払方法</h2><p>銀行振込</p><h2>商品の引渡し時期</h2><p>入金確認後2営業日以内にPDF送付</p><h2>返品・キャンセル</h2><p>デジタルコンテンツの性質上、購入後の返金不可</p></div></div>
+<div id="P-legal" class="pg"><div class="ms">
+<span class="bk" onclick="go('main')">← トップに戻る</span>
+<h1>特定商取引法に基づく表記</h1>
+<h2>事業者名</h2><p>天野紗希</p>
+<h2>運営統括責任者</h2><p>菅原</p>
+<h2>所在地</h2><p>〒150-0001 東京都渋谷区神宮前6丁目23番4号 桑野ビル2階<br><small style="color:var(--t4)">※バーチャルオフィスを利用</small></p>
+<h2>電話番号</h2><p>請求があった場合は遅滞なく開示</p>
+<h2>メールアドレス</h2><p>info@amanosaki.com</p>
+<h2>販売価格</h2><p>各サービスページに記載（税込）</p>
+<h2>支払方法</h2><p>Coconala決済 / STORES決済（クレジットカード・コンビニ払い等）</p>
+<h2>商品の引渡し時期</h2><p>購入後3営業日以内にPDF送付</p>
+<h2>返品・キャンセル</h2><p>デジタルコンテンツの性質上、購入後の返金不可。各プラットフォームの規約に準じます。</p>
+</div></div>
 
 <!-- PRIVACY -->
-<div id="P-privacy" class="pg"><div class="ms"><span class="bk" onclick="go('main')">← トップに戻る</span><h1>プライバシーポリシー</h1><p>amanosaki.com（以下「当サイト」）は、ユーザーの個人情報について以下のとおり定めます。</p><h2>1. 収集する情報</h2><ul><li>お名前、生年月日（鑑定に必要）</li><li>メールアドレス（鑑定書送付に必要）</li></ul><h2>2. 利用目的</h2><ul><li>鑑定サービスの提供</li><li>お問い合わせ対応</li></ul><h2>3. 第三者提供</h2><p>法令に基づく場合を除き、同意なく第三者に提供しません。</p><h2>4. お問い合わせ</h2><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee87808881ae8f838f80819d8f8587c08d8183">[email&#160;protected]</a></p><p style="margin-top:20px;font-size:11px;color:var(--t4)">制定日: 2026年2月23日</p></div></div>
+<div id="P-privacy" class="pg"><div class="ms">
+<span class="bk" onclick="go('main')">← トップに戻る</span>
+<h1>プライバシーポリシー</h1>
+<p>amanosaki.com（以下「当サイト」）は、ユーザーの個人情報について以下のとおり定めます。</p>
+<h2>1. 収集する情報</h2>
+<ul><li>お名前、生年月日（鑑定に必要）</li><li>メールアドレス（鑑定書送付に必要）</li></ul>
+<h2>2. 利用目的</h2>
+<ul><li>鑑定サービスの提供</li><li>お問い合わせ対応</li></ul>
+<h2>3. 第三者提供</h2>
+<p>法令に基づく場合を除き、同意なく第三者に提供しません。各販売プラットフォーム（Coconala、STORES）の利用規約に準じます。</p>
+<h2>4. お問い合わせ</h2>
+<p>info@amanosaki.com</p>
+<p style="margin-top:20px;font-size:11px;color:var(--t4)">制定日: 2026年2月23日</p>
+</div></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 window.addEventListener('scroll',function(){document.getElementById('N').classList.toggle('s',scrollY>40)});
 var els=document.querySelectorAll('.rv'),ob=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');ob.unobserve(en.target)}})},{threshold:.08});els.forEach(function(e){ob.observe(e)});
 function go(p){document.querySelectorAll('.pg').forEach(function(e){e.classList.remove('on')});if(p==='main'){document.getElementById('M').style.display='block';scrollTo(0,0)}else{document.getElementById('M').style.display='none';var el=document.getElementById('P-'+p);if(el){el.classList.add('on');scrollTo(0,0)}}}
 function ss(id){go('main');setTimeout(function(){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})},50)}
-function submitForm(e){
-e.preventDefault();
-var name=document.getElementById('f-name').value;
-var y=document.getElementById('f-year').value;
-var m=document.getElementById('f-month').value;
-var d=document.getElementById('f-day').value;
-var menu=document.getElementById('f-menu').value;
-var notedate=document.getElementById('f-notedate').value;
-var email=document.getElementById('f-email').value;
-var msg=document.getElementById('f-msg').value;
-var subject='【鑑定申込】'+name+'さま（'+menu+'）';
-var body='■ お名前: '+name+'\n■ 生年月日
+</script>
+</body></html>
