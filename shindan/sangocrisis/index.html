@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>産後クライシス度診断 | 天野紗希</title>
+<meta name="description" content="5つの質問で産後クライシスの深刻度を星の視点から診断。惑星データ解析者・天野紗希。">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFBFC;--bg2:#FFF0F3;--rose:#C8566B;--rose2:#A8425A;--rose-light:#F2D0D6;--t:#2D2030;--t2:#4A3F55;--t3:#7A7088;--t4:#A098AC;--sf:'Shippori Mincho',serif;--sn:'Zen Kaku Gothic New',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sn);background:var(--bg);color:var(--t);line-height:1.8;min-height:100vh}
+.wrap{max-width:520px;margin:0 auto;padding:24px 20px 60px}
+h1{font-family:var(--sf);font-size:24px;font-weight:600;text-align:center;line-height:1.5;margin-bottom:4px}
+.sub{text-align:center;font-size:11px;color:var(--t4);margin-bottom:32px;letter-spacing:1px}
+.brand{text-align:center;font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:16px}
+.prog-wrap{margin-bottom:28px}
+.prog-bar{height:3px;background:var(--rose-light);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--rose);border-radius:2px;transition:width .4s ease}
+.prog-text{font-size:10px;color:var(--t4);text-align:right;margin-top:4px}
+.q-screen{display:none;animation:fadeUp .4s ease}
+.q-screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.q-num{font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:8px}
+.q-text{font-family:var(--sf);font-size:18px;font-weight:500;margin-bottom:24px;line-height:1.6}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:14px 18px;background:#fff;border:1px solid rgba(200,86,107,.08);border-radius:12px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .25s;line-height:1.6;text-align:left}
+.choice:hover{border-color:rgba(200,86,107,.3);background:var(--bg2)}
+.choice:active,.choice.selected{border-color:var(--rose);background:rgba(200,86,107,.06);color:var(--t)}
+#result{display:none;animation:fadeUp .5s ease}
+.result-level{text-align:center;margin-bottom:24px}
+.result-icon{font-size:48px;margin-bottom:12px}
+.result-label{font-size:10px;letter-spacing:3px;color:var(--rose);margin-bottom:4px}
+.result-title{font-family:var(--sf);font-size:22px;font-weight:600;line-height:1.5}
+.result-meter{margin:20px 0;height:8px;background:var(--rose-light);border-radius:4px;overflow:hidden}
+.result-meter-fill{height:100%;border-radius:4px;transition:width 1s ease .3s}
+.result-body{font-size:13px;color:var(--t2);line-height:2.2;margin-bottom:28px}
+.result-body strong{color:var(--rose)}
+.result-star{background:var(--bg2);border-radius:14px;padding:20px;border:1px solid rgba(200,86,107,.06);margin-bottom:28px;font-size:12px;color:var(--t2);line-height:2}
+.result-star-label{font-size:10px;color:var(--rose);letter-spacing:2px;margin-bottom:8px}
+.cta-box{background:#fff;border-radius:16px;padding:28px 24px;border:1px solid rgba(200,86,107,.08);text-align:center;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.03)}
+.cta-box p{font-size:12px;color:var(--t3);margin-bottom:16px;line-height:1.8}
+.btn-primary{display:inline-block;padding:14px 32px;border-radius:30px;border:0;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:2px;text-decoration:none;font-family:var(--sn);transition:all .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,86,107,.2)}
+.btn-secondary{display:inline-block;padding:12px 28px;border-radius:30px;border:1px solid rgba(200,86,107,.25);background:rgba(200,86,107,.04);color:var(--rose);font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;font-family:var(--sn);transition:.3s}
+.btn-secondary:hover{border-color:rgba(200,86,107,.5);background:rgba(200,86,107,.08)}
+.retry{text-align:center;margin-top:20px}
+.retry a{font-size:11px;color:var(--t4);cursor:pointer;text-decoration:underline}
+.share-btns{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.share-btn{padding:8px 16px;border-radius:20px;font-size:11px;font-weight:500;text-decoration:none;transition:.3s}
+.share-x{background:#000;color:#fff}.share-x:hover{opacity:.8}
+.share-line{background:#06C755;color:#fff}.share-line:hover{opacity:.8}
+.share-threads{background:#000;color:#fff}.share-threads:hover{opacity:.8}
+footer{text-align:center;padding:20px;font-size:9px;color:var(--t4)}
+footer a{color:var(--rose);text-decoration:none}
+</style>
+</head><body>
+
+<div class="wrap">
+<div class="brand">✦ AMANOSAKI</div>
+<h1 id="quiz-title"></h1>
+<div class="sub" id="quiz-sub"></div>
+
+<div class="prog-wrap">
+<div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+<div class="prog-text" id="prog-text"></div>
+</div>
+
+<div id="questions"></div>
+
+<div id="result">
+<div class="result-level">
+<div class="result-icon" id="r-icon"></div>
+<div class="result-label" id="r-label"></div>
+<div class="result-title" id="r-title"></div>
+</div>
+<div class="result-meter"><div class="result-meter-fill" id="r-meter" style="width:0%"></div></div>
+<div class="result-body" id="r-body"></div>
+<div class="result-star">
+<div class="result-star-label">✦ 星からのメッセージ</div>
+<div id="r-star"></div>
+</div>
+
+<div class="cta-box">
+<p>あなたの星の配線を、もっと詳しく読み解きます。<br>「なぜこうなったのか」「いつ終わるのか」——<br>答えは天体の周期が持っています。</p>
+<a href="https://note.com/amanosaki/n/nb0af26d5fbac" target="_blank" class="btn-primary">note記事を読む</a>
+</div>
+<div class="cta-box" style="background:var(--bg2)">
+<p>あなた専用の鑑定書をお届けします。</p>
+<a href="https://amanosaki.com/#kantei" class="btn-secondary">鑑定書を申し込む →</a>
+</div>
+
+<div class="share-btns" id="share-btns"></div>
+<div class="retry"><a onclick="location.reload()">もう一度診断する</a></div>
+</div>
+</div>
+
+<footer>✦ <a href="https://amanosaki.com">amanosaki.com</a> — 天野紗希｜惑星データ解析者</footer>
+
+<script>
+var QUIZ = {
+  title: "産後クライシス度診断",
+  subtitle: "5つの質問で「産後の危機」を星の視点から診断",
+
+  questions: [
+    {
+      text: "パートナーに対して、出産前と今で気持ちは変わりましたか？",
+      choices: [
+        { text: "変わらず愛情がある", score: 1 },
+        { text: "少し余裕がなくて冷たくしてしまう", score: 2 },
+        { text: "触れたくない、近づきたくない", score: 3 },
+        { text: "生理的に無理になった", score: 4 },
+        { text: "憎しみすら感じる", score: 5 },
+      ]
+    },
+    {
+      text: "育児の負担は公平だと感じますか？",
+      choices: [
+        { text: "協力してくれている", score: 1 },
+        { text: "もう少しやってほしい", score: 2 },
+        { text: "ほぼワンオペ", score: 3 },
+        { text: "手伝いを頼むと嫌な顔をされる", score: 4 },
+        { text: "「俺は仕事してる」と言われて終わり", score: 5 },
+      ]
+    },
+    {
+      text: "自分のための時間はありますか？",
+      choices: [
+        { text: "毎日少しはある", score: 1 },
+        { text: "週に数時間", score: 2 },
+        { text: "月に数時間", score: 3 },
+        { text: "ほとんどない", score: 4 },
+        { text: "トイレに行く時間すら一人になれない", score: 5 },
+      ]
+    },
+    {
+      text: "「母親なんだから」というプレッシャーを感じますか？",
+      choices: [
+        { text: "あまり感じない", score: 1 },
+        { text: "少し感じる", score: 2 },
+        { text: "かなり感じる", score: 3 },
+        { text: "常に「完璧な母親」でいなければと思う", score: 4 },
+        { text: "自分は母親失格だと思う", score: 5 },
+      ]
+    },
+    {
+      text: "産後、泣くことが増えましたか？",
+      choices: [
+        { text: "特に変わらない", score: 1 },
+        { text: "少し増えた", score: 2 },
+        { text: "よく泣くようになった", score: 3 },
+        { text: "毎日泣いている", score: 4 },
+        { text: "泣く気力もない。何も感じない", score: 5 },
+      ]
+    },
+  ],
+
+  results: [
+    {
+      min: 5, max: 9,
+      icon: "🌿",
+      label: "軽度",
+      title: "産後の調整期です",
+      meter: 15, meterColor: "#6BAF8D",
+      body: "出産後の変化に適応している最中です。<strong>月のトランジット</strong>で感情が揺れやすい日があります。星のリズムを知ることで、自分に優しくなれます。",
+      star: "あなたの月は産後のホルモン変化を反映して揺れています。これは一時的なもの。安定する時期を出せます。"
+    },
+    {
+      min: 10, max: 14,
+      icon: "🌤",
+      label: "注意",
+      title: "産後クライシスの入口にいます",
+      meter: 40, meterColor: "#D4A24C",
+      body: "「産後だから仕方ない」で済ませないでください。<strong>ホルモンの変化×睡眠不足×孤立</strong>は、心を壊す十分な条件です。星が「最も脆い時期」を出せます。",
+      star: "土星が4ハウスを通過中。「家庭の構造」を試される時期。パートナーとの役割分担を見直す窓が開いています。"
+    },
+    {
+      min: 15, max: 19,
+      icon: "🌙",
+      label: "危険",
+      title: "あなたは壊れかけています",
+      meter: 70, meterColor: "#C8566B",
+      body: "「母親なんだから頑張らなきゃ」——<strong>その言葉があなたを殺しています</strong>。産後うつは病気です。恥ずかしいことではありません。星が「回復の窓」を出せます。",
+      star: "冥王星が4ハウスに影響。家庭の構造が根底から変わろうとしています。あなた一人が耐える配置ではありません。"
+    },
+    {
+      min: 20, max: 25,
+      icon: "🌑",
+      label: "緊急",
+      title: "今すぐ助けが必要です",
+      meter: 95, meterColor: "#8B2040",
+      body: "<strong>産後ケアセンター、保健師、産婦人科に今日中に連絡</strong>してください。あなたが倒れたら赤ちゃんも守れません。星は「楽になる時期」を持っています。まず安全確保を。",
+      star: "冥王星が月に合。感情の限界を超えています。でもこれは永遠ではありません。嵐が過ぎる日付を出せます。"
+    },
+  ],
+
+  shareText: function(r) {
+    return "産後クライシス度診断の結果は「" + r.title + "」でした。\n天野紗希の星の診断 → https://amanosaki.com/shindan/sangocrisis/";
+  }
+};
+
+var currentQ = 0;
+var scores = [];
+var totalQ = QUIZ.questions.length;
+
+document.getElementById('quiz-title').textContent = QUIZ.title;
+document.getElementById('quiz-sub').textContent = QUIZ.subtitle;
+document.title = QUIZ.title + ' | 天野紗希';
+
+var qContainer = document.getElementById('questions');
+QUIZ.questions.forEach(function(q, i) {
+  var screen = document.createElement('div');
+  screen.className = 'q-screen' + (i === 0 ? ' active' : '');
+  screen.id = 'q-' + i;
+  var html = '<div class="q-num">QUESTION ' + (i + 1) + ' / ' + totalQ + '</div>';
+  html += '<div class="q-text">' + q.text + '</div>';
+  html += '<div class="choices">';
+  q.choices.forEach(function(c, ci) {
+    html += '<div class="choice" data-q="' + i + '" data-score="' + c.score + '" onclick="selectChoice(this)">' + c.text + '</div>';
+  });
+  html += '</div>';
+  screen.innerHTML = html;
+  qContainer.appendChild(screen);
+});
+
+updateProgress();
+
+function updateProgress() {
+  var pct = Math.round((currentQ / totalQ) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = currentQ + ' / ' + totalQ;
+}
+
+function selectChoice(el) {
+  if (el.classList.contains('selected')) return;
+  var siblings = el.parentElement.children;
+  for (var i = 0; i < siblings.length; i++) siblings[i].style.pointerEvents = 'none';
+  el.classList.add('selected');
+  scores.push(parseInt(el.dataset.score));
+  currentQ++;
+  setTimeout(function() {
+    if (currentQ < totalQ) {
+      document.getElementById('q-' + (currentQ - 1)).classList.remove('active');
+      document.getElementById('q-' + currentQ).classList.add('active');
+      updateProgress();
+    } else {
+      showResult();
+    }
+  }, 400);
+}
+
+function showResult() {
+  document.getElementById('questions').style.display = 'none';
+  document.querySelector('.prog-wrap').style.display = 'none';
+  var total = scores.reduce(function(a, b) { return a + b; }, 0);
+  var result = null;
+  for (var i = 0; i < QUIZ.results.length; i++) {
+    if (total >= QUIZ.results[i].min && total <= QUIZ.results[i].max) {
+      result = QUIZ.results[i]; break;
+    }
+  }
+  if (!result) result = QUIZ.results[QUIZ.results.length - 1];
+  document.getElementById('r-icon').textContent = result.icon;
+  document.getElementById('r-label').textContent = result.label;
+  document.getElementById('r-title').textContent = result.title;
+  document.getElementById('r-body').innerHTML = result.body;
+  document.getElementById('r-star').textContent = result.star;
+  var meter = document.getElementById('r-meter');
+  meter.style.background = result.meterColor;
+  setTimeout(function() { meter.style.width = result.meter + '%'; }, 100);
+  var shareText = QUIZ.shareText(result);
+  var encoded = encodeURIComponent(shareText);
+  var shareHtml = '';
+  shareHtml += '<a class="share-btn share-x" href="https://x.com/intent/tweet?text=' + encoded + '" target="_blank">Xでシェア</a>';
+  shareHtml += '<a class="share-btn share-threads" href="https://www.threads.net/intent/post?text=' + encoded + '" target="_blank">Threads</a>';
+  shareHtml += '<a class="share-btn share-line" href="https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://amanosaki.com/shindan/sangocrisis/') + '" target="_blank">LINE</a>';
+  document.getElementById('share-btns').innerHTML = shareHtml;
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('prog-text').textContent = totalQ + ' / ' + totalQ;
+  document.querySelector('.prog-wrap').style.display = 'block';
+}
+</script>
+</body></html>

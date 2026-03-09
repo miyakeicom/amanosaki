@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>仮面夫婦度診断 | 天野紗希</title>
+<meta name="description" content="5つの質問で仮面夫婦の度合いを星の視点から診断。惑星データ解析者・天野紗希。">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFBFC;--bg2:#FFF0F3;--rose:#C8566B;--rose2:#A8425A;--rose-light:#F2D0D6;--t:#2D2030;--t2:#4A3F55;--t3:#7A7088;--t4:#A098AC;--sf:'Shippori Mincho',serif;--sn:'Zen Kaku Gothic New',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sn);background:var(--bg);color:var(--t);line-height:1.8;min-height:100vh}
+.wrap{max-width:520px;margin:0 auto;padding:24px 20px 60px}
+h1{font-family:var(--sf);font-size:24px;font-weight:600;text-align:center;line-height:1.5;margin-bottom:4px}
+.sub{text-align:center;font-size:11px;color:var(--t4);margin-bottom:32px;letter-spacing:1px}
+.brand{text-align:center;font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:16px}
+.prog-wrap{margin-bottom:28px}
+.prog-bar{height:3px;background:var(--rose-light);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--rose);border-radius:2px;transition:width .4s ease}
+.prog-text{font-size:10px;color:var(--t4);text-align:right;margin-top:4px}
+.q-screen{display:none;animation:fadeUp .4s ease}
+.q-screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.q-num{font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:8px}
+.q-text{font-family:var(--sf);font-size:18px;font-weight:500;margin-bottom:24px;line-height:1.6}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:14px 18px;background:#fff;border:1px solid rgba(200,86,107,.08);border-radius:12px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .25s;line-height:1.6;text-align:left}
+.choice:hover{border-color:rgba(200,86,107,.3);background:var(--bg2)}
+.choice:active,.choice.selected{border-color:var(--rose);background:rgba(200,86,107,.06);color:var(--t)}
+#result{display:none;animation:fadeUp .5s ease}
+.result-level{text-align:center;margin-bottom:24px}
+.result-icon{font-size:48px;margin-bottom:12px}
+.result-label{font-size:10px;letter-spacing:3px;color:var(--rose);margin-bottom:4px}
+.result-title{font-family:var(--sf);font-size:22px;font-weight:600;line-height:1.5}
+.result-meter{margin:20px 0;height:8px;background:var(--rose-light);border-radius:4px;overflow:hidden}
+.result-meter-fill{height:100%;border-radius:4px;transition:width 1s ease .3s}
+.result-body{font-size:13px;color:var(--t2);line-height:2.2;margin-bottom:28px}
+.result-body strong{color:var(--rose)}
+.result-star{background:var(--bg2);border-radius:14px;padding:20px;border:1px solid rgba(200,86,107,.06);margin-bottom:28px;font-size:12px;color:var(--t2);line-height:2}
+.result-star-label{font-size:10px;color:var(--rose);letter-spacing:2px;margin-bottom:8px}
+.cta-box{background:#fff;border-radius:16px;padding:28px 24px;border:1px solid rgba(200,86,107,.08);text-align:center;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.03)}
+.cta-box p{font-size:12px;color:var(--t3);margin-bottom:16px;line-height:1.8}
+.btn-primary{display:inline-block;padding:14px 32px;border-radius:30px;border:0;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:2px;text-decoration:none;font-family:var(--sn);transition:all .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,86,107,.2)}
+.btn-secondary{display:inline-block;padding:12px 28px;border-radius:30px;border:1px solid rgba(200,86,107,.25);background:rgba(200,86,107,.04);color:var(--rose);font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;font-family:var(--sn);transition:.3s}
+.btn-secondary:hover{border-color:rgba(200,86,107,.5);background:rgba(200,86,107,.08)}
+.retry{text-align:center;margin-top:20px}
+.retry a{font-size:11px;color:var(--t4);cursor:pointer;text-decoration:underline}
+.share-btns{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.share-btn{padding:8px 16px;border-radius:20px;font-size:11px;font-weight:500;text-decoration:none;transition:.3s}
+.share-x{background:#000;color:#fff}.share-x:hover{opacity:.8}
+.share-line{background:#06C755;color:#fff}.share-line:hover{opacity:.8}
+.share-threads{background:#000;color:#fff}.share-threads:hover{opacity:.8}
+footer{text-align:center;padding:20px;font-size:9px;color:var(--t4)}
+footer a{color:var(--rose);text-decoration:none}
+</style>
+</head><body>
+
+<div class="wrap">
+<div class="brand">✦ AMANOSAKI</div>
+<h1 id="quiz-title"></h1>
+<div class="sub" id="quiz-sub"></div>
+
+<div class="prog-wrap">
+<div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+<div class="prog-text" id="prog-text"></div>
+</div>
+
+<div id="questions"></div>
+
+<div id="result">
+<div class="result-level">
+<div class="result-icon" id="r-icon"></div>
+<div class="result-label" id="r-label"></div>
+<div class="result-title" id="r-title"></div>
+</div>
+<div class="result-meter"><div class="result-meter-fill" id="r-meter" style="width:0%"></div></div>
+<div class="result-body" id="r-body"></div>
+<div class="result-star">
+<div class="result-star-label">✦ 星からのメッセージ</div>
+<div id="r-star"></div>
+</div>
+
+<div class="cta-box">
+<p>あなたの星の配線を、もっと詳しく読み解きます。<br>「なぜこうなったのか」「いつ終わるのか」——<br>答えは天体の周期が持っています。</p>
+<a href="https://note.com/amanosaki/n/nb0af26d5fbac" target="_blank" class="btn-primary">note記事を読む</a>
+</div>
+<div class="cta-box" style="background:var(--bg2)">
+<p>あなた専用の鑑定書をお届けします。</p>
+<a href="https://amanosaki.com/#kantei" class="btn-secondary">鑑定書を申し込む →</a>
+</div>
+
+<div class="share-btns" id="share-btns"></div>
+<div class="retry"><a onclick="location.reload()">もう一度診断する</a></div>
+</div>
+</div>
+
+<footer>✦ <a href="https://amanosaki.com">amanosaki.com</a> — 天野紗希｜惑星データ解析者</footer>
+
+<script>
+var QUIZ = {
+  title: "仮面夫婦度診断",
+  subtitle: "5つの質問で「見せかけの夫婦」度を星の視点から診断",
+
+  questions: [
+    {
+      text: "パートナーと最後に本音で話したのはいつですか？",
+      choices: [
+        { text: "最近も話している", score: 1 },
+        { text: "数週間前", score: 2 },
+        { text: "数ヶ月前", score: 3 },
+        { text: "思い出せない", score: 4 },
+        { text: "本音で話したことがない気がする", score: 5 },
+      ]
+    },
+    {
+      text: "二人でいるとき、何をしていますか？",
+      choices: [
+        { text: "会話を楽しんでいる", score: 1 },
+        { text: "テレビを一緒に見ている", score: 2 },
+        { text: "それぞれスマホを見ている", score: 3 },
+        { text: "同じ空間にいるだけ", score: 4 },
+        { text: "いることすら苦痛", score: 5 },
+      ]
+    },
+    {
+      text: "外出先で「仲良し夫婦」を演じますか？",
+      choices: [
+        { text: "演じていない。普通に仲がいい", score: 1 },
+        { text: "少し意識して明るく振る舞う", score: 2 },
+        { text: "完全に演技している", score: 3 },
+        { text: "演技しないと周りに心配される", score: 4 },
+        { text: "演技する気力もない", score: 5 },
+      ]
+    },
+    {
+      text: "パートナーに触れられたらどう感じますか？",
+      choices: [
+        { text: "嬉しい", score: 1 },
+        { text: "特に何も感じない", score: 2 },
+        { text: "少し不快", score: 3 },
+        { text: "触られたくない", score: 4 },
+        { text: "虫唾が走る", score: 5 },
+      ]
+    },
+    {
+      text: "この結婚を続ける理由は何ですか？",
+      choices: [
+        { text: "愛情がある", score: 1 },
+        { text: "子供のため", score: 2 },
+        { text: "経済的な理由", score: 3 },
+        { text: "世間体", score: 4 },
+        { text: "理由がわからない。ただ惰性で続いている", score: 5 },
+      ]
+    },
+  ],
+
+  results: [
+    {
+      min: 5, max: 9,
+      icon: "🌿",
+      label: "健全",
+      title: "まだ関係は生きています",
+      meter: 15, meterColor: "#6BAF8D",
+      body: "冷めかけていても、<strong>関係修復の余地は十分にあります</strong>。金星のトランジットが「関係を温め直す窓」を開ける時期を知っておきましょう。",
+      star: "7ハウスに調和的なアスペクト。パートナーシップの基盤は壊れていません。次の金星トランジットが二人の関係を動かします。"
+    },
+    {
+      min: 10, max: 14,
+      icon: "🌤",
+      label: "注意",
+      title: "仮面が張り付き始めています",
+      meter: 40, meterColor: "#D4A24C",
+      body: "「このままでいいか」と自問する日が増えていませんか？<strong>仮面は長く被るほど剥がしにくくなります</strong>。星が「関係が分岐する時期」を持っています。",
+      star: "土星が7ハウスを通過中。「パートナーシップの試験期間」です。この時期の選択が今後10年を決めます。"
+    },
+    {
+      min: 15, max: 19,
+      icon: "🌙",
+      label: "深刻",
+      title: "二人の間に何も残っていない",
+      meter: 70, meterColor: "#C8566B",
+      body: "愛情も会話も消えた。残っているのは<strong>「別れる理由」より「別れない理由」</strong>を数える作業だけ。星は「この構造がいつ限界を迎えるか」を持っています。",
+      star: "冥王星が7ハウスに影響。関係の「死」が近づいています。でも「死」の先に再生があります。二人が本当に望む形を出せます。"
+    },
+    {
+      min: 20, max: 25,
+      icon: "🌑",
+      label: "末期",
+      title: "仮面すら維持できない状態です",
+      meter: 95, meterColor: "#8B2040",
+      body: "あなたの心身はもう限界です。<strong>「このまま死ぬまで演じ続ける」か「今、動く」か</strong>——二択です。星が最適なタイミングを示します。",
+      star: "天王星が7ハウスに強い影響。「突然の決壊」が近い配置。コントロールされた形で動くか、爆発するか。選べるうちに動きましょう。"
+    },
+  ],
+
+  shareText: function(r) {
+    return "仮面夫婦度診断の結果は「" + r.title + "」でした。\n天野紗希の星の診断 → https://amanosaki.com/shindan/kamen/";
+  }
+};
+
+var currentQ = 0;
+var scores = [];
+var totalQ = QUIZ.questions.length;
+
+document.getElementById('quiz-title').textContent = QUIZ.title;
+document.getElementById('quiz-sub').textContent = QUIZ.subtitle;
+document.title = QUIZ.title + ' | 天野紗希';
+
+var qContainer = document.getElementById('questions');
+QUIZ.questions.forEach(function(q, i) {
+  var screen = document.createElement('div');
+  screen.className = 'q-screen' + (i === 0 ? ' active' : '');
+  screen.id = 'q-' + i;
+  var html = '<div class="q-num">QUESTION ' + (i + 1) + ' / ' + totalQ + '</div>';
+  html += '<div class="q-text">' + q.text + '</div>';
+  html += '<div class="choices">';
+  q.choices.forEach(function(c, ci) {
+    html += '<div class="choice" data-q="' + i + '" data-score="' + c.score + '" onclick="selectChoice(this)">' + c.text + '</div>';
+  });
+  html += '</div>';
+  screen.innerHTML = html;
+  qContainer.appendChild(screen);
+});
+
+updateProgress();
+
+function updateProgress() {
+  var pct = Math.round((currentQ / totalQ) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = currentQ + ' / ' + totalQ;
+}
+
+function selectChoice(el) {
+  if (el.classList.contains('selected')) return;
+  var siblings = el.parentElement.children;
+  for (var i = 0; i < siblings.length; i++) siblings[i].style.pointerEvents = 'none';
+  el.classList.add('selected');
+  scores.push(parseInt(el.dataset.score));
+  currentQ++;
+  setTimeout(function() {
+    if (currentQ < totalQ) {
+      document.getElementById('q-' + (currentQ - 1)).classList.remove('active');
+      document.getElementById('q-' + currentQ).classList.add('active');
+      updateProgress();
+    } else {
+      showResult();
+    }
+  }, 400);
+}
+
+function showResult() {
+  document.getElementById('questions').style.display = 'none';
+  document.querySelector('.prog-wrap').style.display = 'none';
+  var total = scores.reduce(function(a, b) { return a + b; }, 0);
+  var result = null;
+  for (var i = 0; i < QUIZ.results.length; i++) {
+    if (total >= QUIZ.results[i].min && total <= QUIZ.results[i].max) {
+      result = QUIZ.results[i]; break;
+    }
+  }
+  if (!result) result = QUIZ.results[QUIZ.results.length - 1];
+  document.getElementById('r-icon').textContent = result.icon;
+  document.getElementById('r-label').textContent = result.label;
+  document.getElementById('r-title').textContent = result.title;
+  document.getElementById('r-body').innerHTML = result.body;
+  document.getElementById('r-star').textContent = result.star;
+  var meter = document.getElementById('r-meter');
+  meter.style.background = result.meterColor;
+  setTimeout(function() { meter.style.width = result.meter + '%'; }, 100);
+  var shareText = QUIZ.shareText(result);
+  var encoded = encodeURIComponent(shareText);
+  var shareHtml = '';
+  shareHtml += '<a class="share-btn share-x" href="https://x.com/intent/tweet?text=' + encoded + '" target="_blank">Xでシェア</a>';
+  shareHtml += '<a class="share-btn share-threads" href="https://www.threads.net/intent/post?text=' + encoded + '" target="_blank">Threads</a>';
+  shareHtml += '<a class="share-btn share-line" href="https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://amanosaki.com/shindan/kamen/') + '" target="_blank">LINE</a>';
+  document.getElementById('share-btns').innerHTML = shareHtml;
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('prog-text').textContent = totalQ + ' / ' + totalQ;
+  document.querySelector('.prog-wrap').style.display = 'block';
+}
+</script>
+</body></html>

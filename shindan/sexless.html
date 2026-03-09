@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>セックスレス深刻度診断 | 天野紗希</title>
+<meta name="description" content="5つの質問であなたの関係の断絶度を診断。惑星データ解析者・天野紗希が星の視点から解説。">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFBFC;--bg2:#FFF0F3;--rose:#C8566B;--rose2:#A8425A;--rose-light:#F2D0D6;--t:#2D2030;--t2:#4A3F55;--t3:#7A7088;--t4:#A098AC;--sf:'Shippori Mincho',serif;--sn:'Zen Kaku Gothic New',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sn);background:var(--bg);color:var(--t);line-height:1.8;min-height:100vh}
+.wrap{max-width:520px;margin:0 auto;padding:24px 20px 60px}
+h1{font-family:var(--sf);font-size:24px;font-weight:600;text-align:center;line-height:1.5;margin-bottom:4px}
+.sub{text-align:center;font-size:11px;color:var(--t4);margin-bottom:32px;letter-spacing:1px}
+.brand{text-align:center;font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:16px}
+
+/* Progress */
+.prog-wrap{margin-bottom:28px}
+.prog-bar{height:3px;background:var(--rose-light);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--rose);border-radius:2px;transition:width .4s ease}
+.prog-text{font-size:10px;color:var(--t4);text-align:right;margin-top:4px}
+
+/* Question */
+.q-screen{display:none;animation:fadeUp .4s ease}
+.q-screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.q-num{font-size:10px;color:var(--rose);letter-spacing:3px;margin-bottom:8px}
+.q-text{font-family:var(--sf);font-size:18px;font-weight:500;margin-bottom:24px;line-height:1.6}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:14px 18px;background:#fff;border:1px solid rgba(200,86,107,.08);border-radius:12px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .25s;line-height:1.6;text-align:left}
+.choice:hover{border-color:rgba(200,86,107,.3);background:var(--bg2)}
+.choice:active,.choice.selected{border-color:var(--rose);background:rgba(200,86,107,.06);color:var(--t)}
+
+/* Result */
+#result{display:none;animation:fadeUp .5s ease}
+.result-level{text-align:center;margin-bottom:24px}
+.result-icon{font-size:48px;margin-bottom:12px}
+.result-label{font-size:10px;letter-spacing:3px;color:var(--rose);margin-bottom:4px}
+.result-title{font-family:var(--sf);font-size:22px;font-weight:600;line-height:1.5}
+.result-meter{margin:20px 0;height:8px;background:var(--rose-light);border-radius:4px;overflow:hidden}
+.result-meter-fill{height:100%;border-radius:4px;transition:width 1s ease .3s}
+.result-body{font-size:13px;color:var(--t2);line-height:2.2;margin-bottom:28px}
+.result-body strong{color:var(--rose)}
+.result-star{background:var(--bg2);border-radius:14px;padding:20px;border:1px solid rgba(200,86,107,.06);margin-bottom:28px;font-size:12px;color:var(--t2);line-height:2}
+.result-star-label{font-size:10px;color:var(--rose);letter-spacing:2px;margin-bottom:8px}
+
+.cta-box{background:#fff;border-radius:16px;padding:28px 24px;border:1px solid rgba(200,86,107,.08);text-align:center;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.03)}
+.cta-box p{font-size:12px;color:var(--t3);margin-bottom:16px;line-height:1.8}
+.btn-primary{display:inline-block;padding:14px 32px;border-radius:30px;border:0;background:linear-gradient(135deg,var(--rose),var(--rose2));color:#fff;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:2px;text-decoration:none;font-family:var(--sn);transition:all .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,86,107,.2)}
+.btn-secondary{display:inline-block;padding:12px 28px;border-radius:30px;border:1px solid rgba(200,86,107,.25);background:rgba(200,86,107,.04);color:var(--rose);font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;font-family:var(--sn);transition:.3s}
+.btn-secondary:hover{border-color:rgba(200,86,107,.5);background:rgba(200,86,107,.08)}
+
+.retry{text-align:center;margin-top:20px}
+.retry a{font-size:11px;color:var(--t4);cursor:pointer;text-decoration:underline}
+
+.share-btns{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.share-btn{padding:8px 16px;border-radius:20px;font-size:11px;font-weight:500;text-decoration:none;transition:.3s}
+.share-x{background:#000;color:#fff}.share-x:hover{opacity:.8}
+.share-line{background:#06C755;color:#fff}.share-line:hover{opacity:.8}
+.share-threads{background:#000;color:#fff}.share-threads:hover{opacity:.8}
+
+footer{text-align:center;padding:20px;font-size:9px;color:var(--t4)}
+footer a{color:var(--rose);text-decoration:none}
+</style>
+</head><body>
+
+<div class="wrap">
+<div class="brand">✦ AMANOSAKI</div>
+<h1 id="quiz-title"></h1>
+<div class="sub" id="quiz-sub"></div>
+
+<!-- Progress -->
+<div class="prog-wrap">
+<div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+<div class="prog-text" id="prog-text"></div>
+</div>
+
+<!-- Questions -->
+<div id="questions"></div>
+
+<!-- Result -->
+<div id="result">
+<div class="result-level">
+<div class="result-icon" id="r-icon"></div>
+<div class="result-label" id="r-label"></div>
+<div class="result-title" id="r-title"></div>
+</div>
+<div class="result-meter"><div class="result-meter-fill" id="r-meter" style="width:0%"></div></div>
+<div class="result-body" id="r-body"></div>
+<div class="result-star">
+<div class="result-star-label">✦ 星からのメッセージ</div>
+<div id="r-star"></div>
+</div>
+
+<div class="cta-box">
+<p>あなたの星の配線を、もっと詳しく読み解きます。<br>「なぜこうなったのか」「いつ終わるのか」——<br>答えは天体の周期が持っています。</p>
+<a href="https://note.com/amanosaki/n/nb0af26d5fbac" target="_blank" class="btn-primary">note記事を読む</a>
+</div>
+<div class="cta-box" style="background:var(--bg2)">
+<p>あなた専用の鑑定書をお届けします。</p>
+<a href="https://amanosaki.com/#kantei" class="btn-secondary">鑑定書を申し込む →</a>
+</div>
+
+<div class="share-btns" id="share-btns"></div>
+<div class="retry"><a onclick="location.reload()">もう一度診断する</a></div>
+</div>
+</div>
+
+<footer>✦ <a href="https://amanosaki.com">amanosaki.com</a> — 天野紗希｜惑星データ解析者</footer>
+
+<script>
+// ============================================================
+//  ★ ここを差し替えるだけで別テーマの診断が作れる ★
+// ============================================================
+var QUIZ = {
+  title: "セックスレス深刻度診断",
+  subtitle: "5つの質問であなたの関係の断絶度を診断",
+
+  questions: [
+    {
+      text: "パートナーとの身体的な接触（手をつなぐ、ハグなど）はありますか？",
+      choices: [
+        { text: "日常的にある", score: 1 },
+        { text: "たまにある。自分から触れることが多い", score: 2 },
+        { text: "ほとんどない。いつからかわからない", score: 3 },
+        { text: "触れること自体が怖い、または嫌になった", score: 4 },
+        { text: "相手に触られると体が拒否反応を起こす", score: 5 }
+      ]
+    },
+    {
+      text: "セックスレスの原因について、話し合えていますか？",
+      choices: [
+        { text: "お互いに話せている", score: 1 },
+        { text: "自分からは言えないが、相手は気にしていないようだ", score: 2 },
+        { text: "話題にすると空気が凍る", score: 3 },
+        { text: "拒否されたことがトラウマで切り出せない", score: 4 },
+        { text: "そもそも「話し合い」が成立しない関係", score: 5 }
+      ]
+    },
+    {
+      text: "「自分に魅力がない」と感じることはありますか？",
+      choices: [
+        { text: "特に感じない", score: 1 },
+        { text: "たまに不安になる", score: 2 },
+        { text: "相手に拒否されて、自信を失った", score: 3 },
+        { text: "女（男）として終わったと思っている", score: 4 },
+        { text: "自分の体が嫌い。鏡を見たくない", score: 5 }
+      ]
+    },
+    {
+      text: "この問題以外の夫婦関係はどうですか？",
+      choices: [
+        { text: "仲は良い。この問題だけが気になる", score: 1 },
+        { text: "表面上は普通だが、心の距離を感じる", score: 2 },
+        { text: "会話が減った。事務連絡だけ", score: 3 },
+        { text: "モラハラやDVの要素もある", score: 4 },
+        { text: "同居人、または敵のような関係", score: 5 }
+      ]
+    },
+    {
+      text: "この状態がどれくらい続いていますか？",
+      choices: [
+        { text: "数ヶ月。まだ最近のこと", score: 1 },
+        { text: "半年〜1年くらい", score: 2 },
+        { text: "1〜3年", score: 3 },
+        { text: "3〜5年", score: 4 },
+        { text: "5年以上。もう数えていない", score: 5 }
+      ]
+    }
+  ],
+
+  results: [
+    {
+      min: 5, max: 9,
+      icon: "🌿",
+      label: "MILD",
+      title: "一時的なすれ違いの可能性があります",
+      meter: 15, meterColor: "#6BAF8D",
+      body: "今の段階は深刻ではありません。<strong>多くのカップルが一時的なレス期間を経験します。</strong>ただし放置すると関係の断絶につながります。星の配置で「関係が再び動く時期」を確認しておくと安心です。",
+      star: "金星と火星の配置は悪くありません。トランジットの月が関係を動かすタイミングが近づいています。この窓を逃さなければ、自然に回復する可能性が高いです。"
+    },
+    {
+      min: 10, max: 14,
+      icon: "🌤",
+      label: "MODERATE",
+      title: "関係の断絶が進行しています",
+      meter: 40, meterColor: "#D4A24C",
+      body: "セックスレスは表面の問題であり、<strong>その下にコミュニケーションの断絶が隠れています。</strong>「話題にすると空気が凍る」のは、あなたのせいではありません。二人の金星の配置が、愛情表現のズレを生んでいます。",
+      star: "あなたの金星と相手の火星がインコンジャンクト（調整困難な角度）を形成している可能性があります。「愛したい形」が根本的に違う配線。理解するだけで、責め合いが止まります。"
+    },
+    {
+      min: 15, max: 19,
+      icon: "🌙",
+      label: "SERIOUS",
+      title: "体が「もう無理」と言っています",
+      meter: 70, meterColor: "#C8566B",
+      body: "触れられると体が固まる。それは<strong>あなたの体が出している正常な防御反応</strong>です。壊れているのではありません。あなたの火星（性的エネルギー）が、関係の中で凍結させられただけです。",
+      star: "冥王星があなたの金星または火星にハードアスペクトをかけています。「愛情が支配に変わった」配置。あなたの体が拒否しているのは相手ではなく、支配の構造です。この構造が解ける時期は出せます。"
+    },
+    {
+      min: 20, max: 25,
+      icon: "🌑",
+      label: "CRITICAL",
+      title: "これは「性の問題」ではなく「人生の問題」です",
+      meter: 95, meterColor: "#8B2040",
+      body: "5年以上のレス、モラハラの要素、自己嫌悪。<strong>これはセックスレスという名の、関係全体の崩壊です。</strong>あなたは十分すぎるほど耐えてきました。「女（男）として終わった」のではなく、終わらされたのです。星が、あなたの再起の時期を示しています。",
+      star: "土星と冥王星が5-7ハウス軸を圧迫しています。「愛情と自己表現を封じ込められた」配置。でもこの天体配置は永遠ではない。凍った火星が溶け始める時期が来ます。その日付を知ることが、回復の第一歩です。"
+    }
+  ],
+
+  shareText: function(r) {
+    return "セックスレス深刻度診断の結果は「" + r.title + "」でした。\n天野紗希の星の診断 → https://amanosaki.com/shindan/sexless/";
+  }
+};
+//  ★ データここまで。以下は共通エンジン（触らなくてOK）★
+// ============================================================
+
+var currentQ = 0;
+var scores = [];
+var totalQ = QUIZ.questions.length;
+
+// Init
+document.getElementById('quiz-title').textContent = QUIZ.title;
+document.getElementById('quiz-sub').textContent = QUIZ.subtitle;
+document.title = QUIZ.title + ' | 天野紗希';
+
+// Build question screens
+var qContainer = document.getElementById('questions');
+QUIZ.questions.forEach(function(q, i) {
+  var screen = document.createElement('div');
+  screen.className = 'q-screen' + (i === 0 ? ' active' : '');
+  screen.id = 'q-' + i;
+
+  var html = '<div class="q-num">QUESTION ' + (i + 1) + ' / ' + totalQ + '</div>';
+  html += '<div class="q-text">' + q.text + '</div>';
+  html += '<div class="choices">';
+  q.choices.forEach(function(c, ci) {
+    html += '<div class="choice" data-q="' + i + '" data-score="' + c.score + '" onclick="selectChoice(this)">' + c.text + '</div>';
+  });
+  html += '</div>';
+  screen.innerHTML = html;
+  qContainer.appendChild(screen);
+});
+
+updateProgress();
+
+function updateProgress() {
+  var pct = Math.round((currentQ / totalQ) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-text').textContent = currentQ + ' / ' + totalQ;
+}
+
+function selectChoice(el) {
+  // Prevent double click
+  if (el.classList.contains('selected')) return;
+
+  // Visual feedback
+  var siblings = el.parentElement.children;
+  for (var i = 0; i < siblings.length; i++) siblings[i].style.pointerEvents = 'none';
+  el.classList.add('selected');
+
+  scores.push(parseInt(el.dataset.score));
+  currentQ++;
+
+  setTimeout(function() {
+    if (currentQ < totalQ) {
+      // Next question
+      document.getElementById('q-' + (currentQ - 1)).classList.remove('active');
+      document.getElementById('q-' + currentQ).classList.add('active');
+      updateProgress();
+    } else {
+      // Show result
+      showResult();
+    }
+  }, 400);
+}
+
+function showResult() {
+  document.getElementById('questions').style.display = 'none';
+  document.querySelector('.prog-wrap').style.display = 'none';
+
+  var total = scores.reduce(function(a, b) { return a + b; }, 0);
+  var result = null;
+  for (var i = 0; i < QUIZ.results.length; i++) {
+    if (total >= QUIZ.results[i].min && total <= QUIZ.results[i].max) {
+      result = QUIZ.results[i]; break;
+    }
+  }
+  if (!result) result = QUIZ.results[QUIZ.results.length - 1];
+
+  document.getElementById('r-icon').textContent = result.icon;
+  document.getElementById('r-label').textContent = result.label;
+  document.getElementById('r-title').textContent = result.title;
+  document.getElementById('r-body').innerHTML = result.body;
+  document.getElementById('r-star').textContent = result.star;
+
+  var meter = document.getElementById('r-meter');
+  meter.style.background = result.meterColor;
+  setTimeout(function() { meter.style.width = result.meter + '%'; }, 100);
+
+  // Share buttons
+  var shareText = QUIZ.shareText(result);
+  var encoded = encodeURIComponent(shareText);
+  var shareHtml = '';
+  shareHtml += '<a class="share-btn share-x" href="https://x.com/intent/tweet?text=' + encoded + '" target="_blank">Xでシェア</a>';
+  shareHtml += '<a class="share-btn share-threads" href="https://www.threads.net/intent/post?text=' + encoded + '" target="_blank">Threads</a>';
+  shareHtml += '<a class="share-btn share-line" href="https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://amanosaki.com/shindan/morahara/') + '" target="_blank">LINE</a>';
+  document.getElementById('share-btns').innerHTML = shareHtml;
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('prog-text').textContent = totalQ + ' / ' + totalQ;
+  document.querySelector('.prog-wrap').style.display = 'block';
+}
+</script>
+</body></html>
