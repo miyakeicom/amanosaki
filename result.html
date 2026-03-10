@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Timeline — Amano Saki</title>
+<meta name="description" content="Your planetary timeline by Amano Saki.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sumi:#0f0f0f;--sumi2:#161616;--sumi3:#1c1c1c;--washi:#e8e0d0;--washi-dim:#9e9788;--washi-faint:#6b655c;--kinpaku:#b89b5a;--kinpaku-dim:#8a7440;--kinpaku-bright:#d4b56a;--display:'Cormorant Garamond',Georgia,serif;--body:'EB Garamond',Georgia,serif}
+html{scroll-behavior:smooth;font-size:17px}
+body{background:var(--sumi);color:var(--washi);font-family:var(--body);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#rippleCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+section,footer,.gold-line{position:relative;z-index:1}
+a{color:var(--kinpaku);text-decoration:none}
+a:hover{color:var(--kinpaku-bright)}
+::selection{background:var(--kinpaku);color:var(--sumi)}
+
+.back-link{text-align:center;padding:24px;font-family:var(--display);font-size:.75rem;letter-spacing:.15em;color:var(--washi-faint)}
+.back-link a{color:var(--washi-faint)}
+.back-link a:hover{color:var(--kinpaku)}
+
+.r-section{text-align:center;padding:60px 24px;max-width:600px;margin:0 auto}
+.r-past-year{font-family:var(--display);font-weight:300;font-size:clamp(4rem,15vw,10rem);color:var(--washi);line-height:1;margin-bottom:24px}
+.r-past-ask{font-family:var(--display);font-style:italic;font-size:clamp(1rem,3vw,1.4rem);color:var(--washi-dim)}
+.r-past-why{font-size:.8rem;color:var(--washi-faint);margin-top:20px;max-width:400px;margin-left:auto;margin-right:auto}
+.r-exit-label{font-family:var(--display);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:32px}
+.r-exit-date{font-family:var(--display);font-weight:300;font-size:clamp(2rem,7vw,4rem);color:var(--kinpaku);line-height:1.2;margin-bottom:16px}
+.r-exit-countdown{font-family:var(--display);font-size:1.1rem;color:var(--washi-dim);font-style:italic}
+.r-exit-message{font-size:.85rem;color:var(--washi-faint);margin-top:32px;max-width:380px;margin-left:auto;margin-right:auto}
+.r-today-label{font-family:var(--display);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:32px}
+.r-today-msg{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--washi);line-height:1.7;max-width:500px;margin:0 auto}
+.r-today-return{font-size:.8rem;color:var(--kinpaku-dim);margin-top:40px;font-style:italic}
+
+.gold-line{display:flex;justify-content:center;padding:60px 0}
+.gold-line span{width:40px;height:1px;background:var(--kinpaku-dim);opacity:.5}
+
+/* CTA */
+.r-cta{text-align:center;padding:40px 24px 60px;max-width:600px;margin:0 auto}
+.r-cta-card{max-width:420px;width:100%;padding:48px 32px;border:1px solid rgba(184,155,90,.12);background:linear-gradient(180deg,var(--sumi2),var(--sumi));margin:0 auto 48px;text-align:center}
+.r-cta-card-label{font-family:var(--display);font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:24px}
+.r-cta-card-date{font-family:var(--display);font-size:1.6rem;font-weight:300;color:var(--kinpaku);margin-bottom:8px}
+.r-cta-card-countdown{font-family:var(--display);font-size:.9rem;color:var(--washi-dim);font-style:italic;margin-bottom:24px}
+.r-cta-card-line{width:40px;height:1px;background:var(--kinpaku-dim);margin:0 auto 24px;opacity:.4}
+.r-cta-card-quote{font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--washi-dim);line-height:1.6}
+.r-cta-buttons{display:flex;flex-direction:column;gap:16px;align-items:center;max-width:360px;width:100%;margin:0 auto 40px}
+.r-cta-btn{display:block;width:100%;text-align:center;font-family:var(--display);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;padding:16px 0;transition:all .4s}
+.r-cta-btn.primary{border:1px solid var(--kinpaku);color:var(--kinpaku)}
+.r-cta-btn.primary:hover{background:var(--kinpaku);color:var(--sumi)}
+.r-cta-btn.secondary{border:1px solid rgba(184,155,90,.25);color:var(--washi-dim)}
+.r-cta-btn.secondary:hover{border-color:var(--kinpaku);color:var(--kinpaku)}
+.r-cta-or{font-family:var(--display);font-size:.75rem;color:var(--washi-faint);font-style:italic}
+.share-btn{background:transparent;border:none;font-family:var(--display);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--kinpaku-dim);cursor:pointer;padding:10px 20px}
+.share-btn:hover{color:var(--kinpaku-bright)}
+
+/* ABOUT */
+.about{max-width:540px;margin:0 auto;padding:0 24px;text-align:center}
+.section-tag{font-family:var(--display);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:48px;text-align:center}
+.about-portrait{width:140px;height:140px;border-radius:50%;border:1px solid rgba(184,155,90,.15);background:var(--sumi);margin:0 auto 48px;overflow:hidden}
+.about p{font-size:.95rem;color:var(--washi-dim);margin-bottom:24px;line-height:2}
+.about p strong{color:var(--washi);font-weight:500}
+.about-quote{font-family:var(--display);font-style:italic;font-size:1.3rem;font-weight:300;color:var(--kinpaku);margin-top:56px;line-height:1.6}
+
+/* SERIES */
+.series{max-width:600px;margin:0 auto;padding:0 24px}
+.series-list{display:grid;gap:1px}
+.series-item{display:flex;align-items:baseline;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(184,155,90,.08);transition:border-color .4s}
+.series-item:hover{border-color:rgba(184,155,90,.25)}
+.series-item:first-child{border-top:1px solid rgba(184,155,90,.08)}
+.series-item.available .s-title{color:var(--washi)}
+.s-vol{font-family:var(--display);font-size:.75rem;letter-spacing:.2em;color:var(--kinpaku-dim);min-width:48px}
+.s-title{flex:1;font-family:var(--display);font-size:1.05rem;color:var(--washi-dim);padding:0 16px;font-weight:400}
+.s-link{font-family:var(--display);font-size:.75rem;letter-spacing:.15em;color:var(--kinpaku);white-space:nowrap}
+.s-link.soon{color:var(--washi-dim);opacity:.35;letter-spacing:0;font-style:italic}
+
+/* SERVICES */
+.services{max-width:600px;margin:0 auto;padding:0 24px}
+.services-grid{display:grid;gap:48px}
+.svc{padding:48px 0;border-top:1px solid rgba(184,155,90,.1);text-align:center}
+.svc h3{font-family:var(--display);font-size:1.3rem;font-weight:300;color:var(--washi);margin-bottom:8px}
+.svc-price{font-family:var(--display);font-size:2.2rem;font-weight:300;color:var(--kinpaku);margin-bottom:24px}
+.svc-desc{font-size:.88rem;color:var(--washi-dim);max-width:400px;margin:0 auto 32px;line-height:1.9}
+.svc-list{list-style:none;text-align:left;max-width:360px;margin:0 auto 40px}
+.svc-list li{padding:10px 0;font-size:.85rem;color:var(--washi-dim);border-bottom:1px solid rgba(184,155,90,.05)}
+.svc-list li::before{content:'—';color:var(--kinpaku-dim);margin-right:14px}
+.svc-btn{display:inline-block;font-family:var(--display);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;padding-bottom:3px;border-bottom:1px solid var(--kinpaku-dim);color:var(--kinpaku);transition:all .4s}
+.svc-btn:hover{color:var(--kinpaku-bright);border-color:var(--kinpaku-bright)}
+
+/* SIGNUP */
+.signup{max-width:480px;margin:0 auto;padding:0 24px;text-align:center}
+.signup h2{font-family:var(--display);font-size:1.5rem;font-weight:300;color:var(--washi);margin-bottom:16px}
+.signup-sub{font-size:.88rem;color:var(--washi-dim);margin-bottom:40px;line-height:1.9}
+.signup-form{display:flex;gap:0;border-bottom:1px solid rgba(184,155,90,.3);max-width:380px;margin:0 auto}
+.signup-form input{flex:1;padding:14px 0;background:transparent;border:none;color:var(--washi);font-family:var(--body);font-size:.9rem;outline:none}
+.signup-form input::placeholder{color:var(--washi-dim);opacity:.4}
+.signup-form button{padding:14px 0;background:transparent;border:none;color:var(--kinpaku);font-family:var(--display);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.signup-note{font-size:.7rem;color:var(--washi-dim);opacity:.35;margin-top:20px}
+
+/* FOOTER */
+.footer{text-align:center;padding:80px 24px 48px}
+.footer-tagline{font-family:var(--display);font-style:italic;font-size:.8rem;color:var(--washi-faint);margin-bottom:32px}
+.footer-name{font-family:var(--display);font-size:1rem;color:var(--kinpaku-dim);letter-spacing:.15em;margin-bottom:20px}
+.footer-links{font-size:.78rem;margin-bottom:32px}
+.footer-links a{color:var(--washi-dim);margin:0 16px}
+.footer-links a:hover{color:var(--kinpaku)}
+.footer-copy{font-size:.68rem;color:var(--washi-dim);opacity:.25}
+
+@media(max-width:600px){html{font-size:16px}.r-past-year{font-size:clamp(3rem,18vw,6rem)}.r-cta-buttons{max-width:100%}.r-cta-card{padding:36px 24px}.about,.series,.services,.signup{padding-left:20px;padding-right:20px}.signup-form{flex-direction:column;border-bottom:none;max-width:100%}.signup-form input{border-bottom:1px solid rgba(184,155,90,.2);padding:16px 0;text-align:center}.signup-form button{padding:20px 0}.series-item{flex-wrap:wrap;gap:4px}}
+</style>
+</head>
+<body>
+<canvas id="rippleCanvas"></canvas>
+
+<div class="back-link"><a href="index.html">← Enter a different date</a></div>
+
+<!-- PAST HIT -->
+<section class="r-section">
+  <p class="r-past-year" id="pastYear"></p>
+  <p class="r-past-ask">Does this ring a bell?</p>
+  <p class="r-past-why" id="pastWhy"></p>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- EXIT DATE -->
+<section class="r-section">
+  <p class="r-exit-label">Your next door opens</p>
+  <p class="r-exit-date" id="exitDate"></p>
+  <p class="r-exit-countdown" id="exitCountdown"></p>
+  <p class="r-exit-message">This is not a guess. This is the geometry of your sky shifting into a new configuration.</p>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- TODAY -->
+<section class="r-section">
+  <p class="r-today-label">Today's Transit</p>
+  <p class="r-today-msg" id="todayMsg"></p>
+  <p class="r-today-return">This changes every day. Come back tomorrow.</p>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- CTA -->
+<section class="r-cta">
+  <div class="r-cta-card">
+    <p class="r-cta-card-label">Your Planetary Timeline</p>
+    <p class="r-cta-card-date" id="ctaDate"></p>
+    <p class="r-cta-card-countdown" id="ctaCountdown"></p>
+    <div class="r-cta-card-line"></div>
+    <p class="r-cta-card-quote">"It's not your fault. It's just a shift in cosmic season."</p>
+  </div>
+  <div class="r-cta-buttons">
+    <a href="https://www.amazon.com/dp/YOUR_ASIN" target="_blank" rel="noopener" class="r-cta-btn primary">Read the Book →</a>
+    <p class="r-cta-or">or</p>
+    <a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener" class="r-cta-btn secondary">Visit Etsy Shop →</a>
+  </div>
+  <button class="share-btn" onclick="shareResult()">Share My Timeline ↗</button>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- ABOUT -->
+<section class="about">
+  <p class="section-tag">About</p>
+  <div class="about-portrait"><img src="amano_ten.png" alt="Amano Saki" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+  <p><strong>Amano Saki</strong> is a planetary data analyst.</p>
+  <p>Not a fortune teller. Not a psychic. A data analyst.</p>
+  <p>After 15 years of cross-cultural research across Japan and Taiwan, she developed a method that translates complex astrological transits into plain-language timelines — showing people exactly when their hardest seasons began, why they happened, and when they end.</p>
+  <p class="about-quote">"It's not your fault.<br>It's just a shift in cosmic season."</p>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- SERIES -->
+<section class="series">
+  <p class="section-tag">The Astro-Escape Series</p>
+  <div class="series-list">
+    <div class="series-item available"><span class="s-vol">01</span><span class="s-title">Narcissistic Abuse</span><a href="https://www.amazon.com/dp/YOUR_ASIN" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item"><span class="s-vol">02</span><span class="s-title">Divorce Recovery</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">03</span><span class="s-title">Toxic Parents</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">04</span><span class="s-title">Financial Collapse</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">05</span><span class="s-title">Burnout &amp; Career Death</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">06</span><span class="s-title">Sexless Marriage</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">07</span><span class="s-title">Betrayal &amp; Broken Trust</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">08</span><span class="s-title">Grief &amp; Loss</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">09</span><span class="s-title">Addiction</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">10</span><span class="s-title">Emotional Shutdown</span><span class="s-link soon">Soon</span></div>
+  </div>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- SERVICES -->
+<section class="services">
+  <p class="section-tag">Go Deeper</p>
+  <div class="services-grid">
+    <div class="svc"><h3>Transit Report</h3><div class="svc-price">$29</div><p class="svc-desc">A written analysis of your planetary pressure points and their exit dates. Delivered as PDF within 48 hours.</p><ul class="svc-list"><li>Your top 3 pressure transits identified</li><li>Start and end dates for each</li><li>Plain-language explanation</li><li>PDF delivered to your inbox</li></ul><a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener" class="svc-btn">Coming Soon →</a></div>
+    <div class="svc"><h3>Personal Reading</h3><div class="svc-price">$299</div><p class="svc-desc">A complete planetary mapping of your birth chart against current transits. Five readings per month.</p><ul class="svc-list"><li>Full birth chart analysis</li><li>12-month transit timeline</li><li>Specific dates when doors open</li><li>45-minute recorded analysis</li></ul><a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener" class="svc-btn">Coming Soon →</a></div>
+  </div>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- SIGNUP -->
+<section class="signup">
+  <h2>Free Planetary Snapshot</h2>
+  <p class="signup-sub">Get a deeper analysis of your timeline delivered to your inbox.</p>
+  <form class="signup-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='Sent ✓';this.querySelector('button').style.opacity='.5';this.querySelector('input').disabled=true;this.querySelector('button').disabled=true;">
+    <input type="email" placeholder="your@email.com" required>
+    <button type="submit">Send →</button>
+  </form>
+  <p class="signup-note">No spam. Unsubscribe anytime.</p>
+</section>
+<div class="gold-line"><span></span></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-tagline">Data, not destiny.</p>
+  <p class="footer-name">Amano Saki</p>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/amanosaki" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:hello@amanosaki.com">Contact</a>
+    <a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener">Etsy</a>
+  </div>
+  <p class="footer-copy">© 2026 Amano Saki</p>
+</footer>
+
+<script>
+function sunLongitude(month,day){
+  // Approximate: March 21 = 0° Aries
+  const daysFromEquinox=((month-3)*30.44+day-21+365)%365;
+  return (daysFromEquinox/365)*360;
+}
+
+function signName(deg){
+  const signs=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+  return signs[Math.floor(((deg%360)+360)%360/30)];
+}
+
+function signDegree(deg){
+  return Math.floor(((deg%360)+360)%360%30);
+}
+
+// Slow planet approximate positions by year (longitude in degrees)
+// Saturn ~29.5yr cycle, Uranus ~84yr, Pluto ~248yr
+function saturnLong(year){
+  // Saturn was at ~0° Aries in 1996, moves ~12.2°/yr
+  return (0+(year-1996)*12.2)%360;
+}
+function uranusLong(year){
+  // Uranus was at ~0° Aquarius in 1996, moves ~4.3°/yr
+  return (300+(year-1996)*4.3)%360;
+}
+function plutoLong(year){
+  // Pluto was at ~1° Sagittarius in 1996, moves ~1.45°/yr (varies but approx)
+  return (241+(year-1996)*1.45)%360;
+}
+
+function angleDiff(a,b){
+  let d=((a-b)%360+360)%360;
+  return d>180?360-d:d;
+}
+
+// Find hard aspects (conjunction 0°, square 90°, opposition 180°) within orb
+function findHardAspects(sunDeg, planetFn, startYear, endYear, orb){
+  const hits=[];
+  for(let y=startYear;y<=endYear;y+=0.5){
+    const pDeg=planetFn(y);
+    const diff=angleDiff(sunDeg,pDeg);
+    if(diff<orb){hits.push({year:Math.round(y),type:'conjunction',planet:planetFn.name});}
+    else if(Math.abs(diff-90)<orb){hits.push({year:Math.round(y),type:'square',planet:planetFn.name});}
+    else if(Math.abs(diff-180)<orb){hits.push({year:Math.round(y),type:'opposition',planet:planetFn.name});}
+  }
+  // Deduplicate years
+  const seen={};
+  return hits.filter(h=>{if(seen[h.year+h.type+h.planet])return false;seen[h.year+h.type+h.planet]=true;return true;});
+}
+
+// Find next exit date (when current hard transit ends)
+function findNextExit(sunDeg){
+  const now=2026.2;// March 2026
+  let closestExit=null;
+  let closestDist=999;
+  
+  // Check each slow planet
+  [saturnLong,uranusLong,plutoLong].forEach(fn=>{
+    for(let y=now;y<now+5;y+=0.05){
+      const pDeg=fn(y);
+      const diff=angleDiff(sunDeg,pDeg);
+      // Find when aspect is exact then fading (diff crossing 8° outbound)
+      const hardAngles=[0,90,180];
+      hardAngles.forEach(angle=>{
+        const aspectDiff=Math.abs(diff-angle);
+        if(aspectDiff<8){
+          // Find when it leaves 8° orb
+          for(let ey=y;ey<y+4;ey+=0.02){
+            const eDiff=angleDiff(sunDeg,fn(ey));
+            const eAspDiff=Math.abs(eDiff-angle);
+            if(eAspDiff>8){
+              const dist=ey-now;
+              if(dist>0.05&&dist<closestDist){
+                closestDist=dist;
+                closestExit=ey;
+              }
+              break;
+            }
+          }
+        }
+      });
+    }
+  });
+  
+  if(!closestExit||closestDist>4) closestExit=now+0.5+Math.random()*1.5;
+  return closestExit;
+}
+
+function yearToDate(yearDecimal){
+  const y=Math.floor(yearDecimal);
+  const remainder=yearDecimal-y;
+  const dayOfYear=Math.floor(remainder*365);
+  const d=new Date(y,0,1);
+  d.setDate(d.getDate()+dayOfYear);
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+}
+
+function daysBetween(yearDecimal){
+  const now=new Date();
+  const y=Math.floor(yearDecimal);
+  const remainder=yearDecimal-y;
+  const dayOfYear=Math.floor(remainder*365);
+  const target=new Date(y,0,1);
+  target.setDate(target.getDate()+dayOfYear);
+  return Math.max(0,Math.round((target-now)/(1000*60*60*24)));
+}
+
+// Today's transit message (changes daily based on moon approximation + sun sign)
+function todayMessage(sunDeg){
+  const today=new Date();
+  const dayOfYear=Math.floor((today-new Date(today.getFullYear(),0,0))/(1000*60*60*24));
+  // Moon moves ~13.2°/day from arbitrary epoch
+  const moonDeg=(dayOfYear*13.2+87)%360;
+  const moonSign=signName(moonDeg);
+  const sunSign=signName(sunDeg);
+  const diff=angleDiff(sunDeg,moonDeg);
+  
+  const messages=[
+    "The Moon passes through "+moonSign+" today. A quiet current beneath your surface. Don't force decisions — let them arrive.",
+    "Today's Moon in "+moonSign+" activates a hidden corner of your chart. Something you buried may ask to be seen.",
+    "Moon in "+moonSign+". Your "+sunSign+" Sun feels this as a pull between what you know and what you want. Both are valid.",
+    "The Moon transits "+moonSign+" — a temporary lens on old patterns. What repeats today has a structural cause. It's not random.",
+    "With the Moon in "+moonSign+", your emotional weather shifts. "+sunSign+" processes this internally. Write something down tonight.",
+    "Moon through "+moonSign+". The pressure you feel isn't personal — it's planetary geometry. It passes within 48 hours.",
+    "Today: Moon in "+moonSign+" forming a temporary angle to your Sun. Energy may feel scattered. This is transit noise, not signal.",
+    "The Moon enters "+moonSign+". For "+sunSign+", this is a day to observe, not react. Your next clear window opens in 2 days.",
+    "Moon in "+moonSign+" today. The emotional frequency changes. What felt impossible yesterday may feel lighter by tomorrow.",
+    "Today's "+moonSign+" Moon touches a sensitive degree in your chart. Old memories may surface. They're data, not destiny.",
+    "With Moon transiting "+moonSign+", "+sunSign+" may feel the weight of unfinished things. You don't need to finish them today.",
+    "Moon in "+moonSign+". The heaviness is architectural, not personal. The structure shifts within 36 hours."
+  ];
+  
+  // Use day of year + sun degree to pick consistent-per-person daily message
+  const idx=(dayOfYear+Math.floor(sunDeg))%messages.length;
+  return messages[idx];
+}
+
+
+// Read URL params
+var params=new URLSearchParams(window.location.search);
+var month=parseInt(params.get('m'));
+var day=parseInt(params.get('d'));
+var year=parseInt(params.get('y'));
+
+if(!month||!day||!year){window.location.href='index.html';}
+else{
+  var sunDeg=sunLongitude(month,day);
+  var pastHits=[];
+  [saturnLong,uranusLong,plutoLong].forEach(function(fn){
+    var hits=findHardAspects(sunDeg,fn,year+18,2025,8);
+    pastHits.push.apply(pastHits,hits);
+  });
+  pastHits.sort(function(a,b){
+    var pw={plutoLong:3,uranusLong:2,saturnLong:1};
+    return ((pw[b.planet]||1)+((b.year>2010)?2:0))-((pw[a.planet]||1)+((a.year>2010)?2:0));
+  });
+  var pastHit=pastHits.length>0?pastHits[0]:null;
+  var pastYearDisplay=pastHit?pastHit.year:(year+29);
+  var transitNames={conjunction:'was conjunct your Sun',square:'squared your Sun',opposition:'opposed your Sun'};
+  var planetNames={saturnLong:'Saturn',uranusLong:'Uranus',plutoLong:'Pluto'};
+  var exitYear=findNextExit(sunDeg);
+  var exitDateStr=yearToDate(exitYear);
+  var daysLeft=daysBetween(exitYear);
+  var countdownStr=daysLeft>0?daysLeft+' days from now':'The door is opening now.';
+  var todayMsgStr=todayMessage(sunDeg);
+
+  document.getElementById('pastYear').textContent=pastYearDisplay;
+  document.getElementById('pastWhy').textContent=pastHit?planetNames[pastHit.planet]+' '+transitNames[pastHit.type]+'. This is structural, not personal.':'A major transit crossed your chart around this time.';
+  document.getElementById('exitDate').textContent=exitDateStr;
+  document.getElementById('exitCountdown').textContent=countdownStr;
+  document.getElementById('todayMsg').textContent=todayMsgStr;
+  document.getElementById('ctaDate').textContent=exitDateStr;
+  document.getElementById('ctaCountdown').textContent=countdownStr;
+}
+
+function shareResult(){
+  var exitDate=document.getElementById('exitDate').textContent;
+  var text='My next door opens '+exitDate+'. When does yours?\n\nhttps://amanosaki.com';
+  if(navigator.share){navigator.share({title:'Amano Saki',text:text,url:'https://amanosaki.com'}).catch(function(){});}
+  else{navigator.clipboard.writeText(text).then(function(){var b=document.querySelector('.share-btn');b.textContent='Copied ✓';setTimeout(function(){b.textContent='Share My Timeline ↗';},2000);}).catch(function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text),'_blank');});}
+}
+</script>
+<script src="bg.js"></script>
+</body>
+</html>
