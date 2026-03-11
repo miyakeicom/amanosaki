@@ -4,8 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Timeline — Amano Saki</title>
-<meta name="description" content="Your planetary timeline by Amano Saki.">
+<meta name="description" content="Your planetary timeline by Amano Saki. Your suffering has a start date — and an end date.">
+<link rel="canonical" href="https://amanosaki.com/">
+<meta property="og:title" content="Your Planetary Timeline — Amano Saki">
+<meta property="og:description" content="Your suffering has a start date. And an end date.">
+<meta property="og:image" content="https://amanosaki.com/amano_ten.png">
+<meta property="og:url" content="https://amanosaki.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Planetary Timeline — Amano Saki">
+<meta name="twitter:description" content="Your suffering has a start date. And an end date.">
+<meta name="twitter:image" content="https://amanosaki.com/amano_ten.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Amano Saki","url":"https://amanosaki.com","description":"Planetary data analyst translating transit mechanics into timelines.","author":{"@type":"Person","name":"Amano Saki","jobTitle":"Planetary Data Analyst"}}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<!-- GA4: Replace G-XXXXXX with your Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXX');</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--sumi:#0f0f0f;--sumi2:#161616;--sumi3:#1c1c1c;--washi:#e8e0d0;--washi-dim:#9e9788;--washi-faint:#6b655c;--kinpaku:#b89b5a;--kinpaku-dim:#8a7440;--kinpaku-bright:#d4b56a;--display:'Cormorant Garamond',Georgia,serif;--body:'EB Garamond',Georgia,serif}
@@ -17,12 +33,15 @@ a{color:var(--kinpaku);text-decoration:none}
 a:hover{color:var(--kinpaku-bright)}
 ::selection{background:var(--kinpaku);color:var(--sumi)}
 
-.back-link{text-align:center;padding:24px;font-family:var(--display);font-size:.75rem;letter-spacing:.15em;color:var(--washi-faint)}
-.back-link a{color:var(--washi-faint)}
-.back-link a:hover{color:var(--kinpaku)}
+/* HEADER */
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;position:sticky;top:0;z-index:2;background:rgba(15,15,15,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.site-header-name{font-family:var(--display);font-size:.8rem;letter-spacing:.2em;color:var(--kinpaku-dim)}
+.site-header-back{font-family:var(--display);font-size:.72rem;letter-spacing:.1em;color:var(--washi-faint)}
+.site-header-back:hover{color:var(--kinpaku)}
 
+/* RESULT SECTIONS */
 .r-section{text-align:center;padding:60px 24px;max-width:600px;margin:0 auto}
-.r-past-year{font-family:var(--display);font-weight:300;font-size:clamp(4rem,15vw,10rem);color:var(--washi);line-height:1;margin-bottom:24px}
+.r-past-year{font-family:var(--display);font-weight:300;font-size:clamp(3.5rem,12vw,8rem);color:var(--washi);line-height:1;margin-bottom:24px}
 .r-past-ask{font-family:var(--display);font-style:italic;font-size:clamp(1rem,3vw,1.4rem);color:var(--washi-dim)}
 .r-past-why{font-size:.8rem;color:var(--washi-faint);margin-top:20px;max-width:400px;margin-left:auto;margin-right:auto}
 .r-exit-label{font-family:var(--display);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:32px}
@@ -33,34 +52,40 @@ a:hover{color:var(--kinpaku-bright)}
 .r-today-msg{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--washi);line-height:1.7;max-width:500px;margin:0 auto}
 .r-today-return{font-size:.8rem;color:var(--kinpaku-dim);margin-top:40px;font-style:italic}
 
-.gold-line{display:flex;justify-content:center;padding:60px 0}
+.gold-line{display:flex;justify-content:center;padding:48px 0}
 .gold-line span{width:40px;height:1px;background:var(--kinpaku-dim);opacity:.5}
 
-/* CTA */
+/* CTA + SIGNUP (merged) */
 .r-cta{text-align:center;padding:40px 24px 60px;max-width:600px;margin:0 auto}
-.r-cta-card{max-width:420px;width:100%;padding:48px 32px;border:1px solid rgba(184,155,90,.12);background:linear-gradient(180deg,var(--sumi2),var(--sumi));margin:0 auto 48px;text-align:center}
+.r-cta-card{max-width:420px;width:100%;padding:48px 32px;border:1px solid rgba(184,155,90,.12);background:linear-gradient(180deg,var(--sumi2),var(--sumi));margin:0 auto 40px;text-align:center}
 .r-cta-card-label{font-family:var(--display);font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:24px}
 .r-cta-card-date{font-family:var(--display);font-size:1.6rem;font-weight:300;color:var(--kinpaku);margin-bottom:8px}
 .r-cta-card-countdown{font-family:var(--display);font-size:.9rem;color:var(--washi-dim);font-style:italic;margin-bottom:24px}
 .r-cta-card-line{width:40px;height:1px;background:var(--kinpaku-dim);margin:0 auto 24px;opacity:.4}
 .r-cta-card-quote{font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--washi-dim);line-height:1.6}
-.r-cta-buttons{display:flex;flex-direction:column;gap:16px;align-items:center;max-width:360px;width:100%;margin:0 auto 40px}
+.r-cta-signup{max-width:380px;margin:0 auto 40px;text-align:center}
+.r-cta-signup h2{font-family:var(--display);font-size:1.2rem;font-weight:300;color:var(--washi);margin-bottom:8px}
+.r-cta-signup-sub{font-size:.82rem;color:var(--washi-dim);margin-bottom:24px}
+.signup-form{display:flex;gap:0;border-bottom:1px solid rgba(184,155,90,.3);max-width:380px;margin:0 auto}
+.signup-form input{flex:1;padding:14px 0;background:transparent;border:none;color:var(--washi);font-family:var(--body);font-size:.9rem;outline:none}
+.signup-form input::placeholder{color:var(--washi-dim);opacity:.4}
+.signup-form button{padding:14px 0;background:transparent;border:none;color:var(--kinpaku);font-family:var(--display);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.signup-note{font-size:.7rem;color:var(--washi-dim);opacity:.35;margin-top:14px}
+.r-cta-or{font-family:var(--display);font-size:.75rem;color:var(--washi-faint);font-style:italic;margin:24px 0}
+.r-cta-buttons{display:flex;flex-direction:column;gap:12px;align-items:center;max-width:360px;width:100%;margin:0 auto 32px}
 .r-cta-btn{display:block;width:100%;text-align:center;font-family:var(--display);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;padding:16px 0;transition:all .4s}
 .r-cta-btn.primary{border:1px solid var(--kinpaku);color:var(--kinpaku)}
 .r-cta-btn.primary:hover{background:var(--kinpaku);color:var(--sumi)}
-.r-cta-btn.secondary{border:1px solid rgba(184,155,90,.25);color:var(--washi-dim)}
-.r-cta-btn.secondary:hover{border-color:var(--kinpaku);color:var(--kinpaku)}
-.r-cta-or{font-family:var(--display);font-size:.75rem;color:var(--washi-faint);font-style:italic}
 .share-btn{background:transparent;border:none;font-family:var(--display);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--kinpaku-dim);cursor:pointer;padding:10px 20px}
 .share-btn:hover{color:var(--kinpaku-bright)}
 
 /* ABOUT */
 .about{max-width:540px;margin:0 auto;padding:0 24px;text-align:center}
 .section-tag{font-family:var(--display);font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--kinpaku-dim);margin-bottom:48px;text-align:center}
-.about-portrait{width:140px;height:140px;border-radius:50%;border:1px solid rgba(184,155,90,.15);background:var(--sumi);margin:0 auto 48px;overflow:hidden}
+.about-portrait{width:160px;height:160px;border:1px solid rgba(184,155,90,.12);background:var(--sumi);margin:0 auto 48px;overflow:hidden}
+.about-portrait img{width:100%;height:100%;object-fit:cover}
 .about p{font-size:.95rem;color:var(--washi-dim);margin-bottom:24px;line-height:2}
 .about p strong{color:var(--washi);font-weight:500}
-.about-quote{font-family:var(--display);font-style:italic;font-size:1.3rem;font-weight:300;color:var(--kinpaku);margin-top:56px;line-height:1.6}
 
 /* SERIES */
 .series{max-width:600px;margin:0 auto;padding:0 24px}
@@ -73,29 +98,20 @@ a:hover{color:var(--kinpaku-bright)}
 .s-title{flex:1;font-family:var(--display);font-size:1.05rem;color:var(--washi-dim);padding:0 16px;font-weight:400}
 .s-link{font-family:var(--display);font-size:.75rem;letter-spacing:.15em;color:var(--kinpaku);white-space:nowrap}
 .s-link.soon{color:var(--washi-dim);opacity:.35;letter-spacing:0;font-style:italic}
+.series-note{font-size:.75rem;color:var(--washi-faint);text-align:center;margin-top:32px;font-style:italic}
 
 /* SERVICES */
-.services{max-width:600px;margin:0 auto;padding:0 24px}
-.services-grid{display:grid;gap:48px}
-.svc{padding:48px 0;border-top:1px solid rgba(184,155,90,.1);text-align:center}
+.services{max-width:540px;margin:0 auto;padding:0 24px}
+.services-grid{display:grid;gap:24px}
+.svc{padding:48px 32px;border:1px solid rgba(184,155,90,.08);background:linear-gradient(180deg,var(--sumi2),var(--sumi));text-align:center}
 .svc h3{font-family:var(--display);font-size:1.3rem;font-weight:300;color:var(--washi);margin-bottom:8px}
 .svc-price{font-family:var(--display);font-size:2.2rem;font-weight:300;color:var(--kinpaku);margin-bottom:24px}
 .svc-desc{font-size:.88rem;color:var(--washi-dim);max-width:400px;margin:0 auto 32px;line-height:1.9}
-.svc-list{list-style:none;text-align:left;max-width:360px;margin:0 auto 40px}
-.svc-list li{padding:10px 0;font-size:.85rem;color:var(--washi-dim);border-bottom:1px solid rgba(184,155,90,.05)}
-.svc-list li::before{content:'—';color:var(--kinpaku-dim);margin-right:14px}
-.svc-btn{display:inline-block;font-family:var(--display);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;padding-bottom:3px;border-bottom:1px solid var(--kinpaku-dim);color:var(--kinpaku);transition:all .4s}
-.svc-btn:hover{color:var(--kinpaku-bright);border-color:var(--kinpaku-bright)}
-
-/* SIGNUP */
-.signup{max-width:480px;margin:0 auto;padding:0 24px;text-align:center}
-.signup h2{font-family:var(--display);font-size:1.5rem;font-weight:300;color:var(--washi);margin-bottom:16px}
-.signup-sub{font-size:.88rem;color:var(--washi-dim);margin-bottom:40px;line-height:1.9}
-.signup-form{display:flex;gap:0;border-bottom:1px solid rgba(184,155,90,.3);max-width:380px;margin:0 auto}
-.signup-form input{flex:1;padding:14px 0;background:transparent;border:none;color:var(--washi);font-family:var(--body);font-size:.9rem;outline:none}
-.signup-form input::placeholder{color:var(--washi-dim);opacity:.4}
-.signup-form button{padding:14px 0;background:transparent;border:none;color:var(--kinpaku);font-family:var(--display);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
-.signup-note{font-size:.7rem;color:var(--washi-dim);opacity:.35;margin-top:20px}
+.svc-btn{display:inline-block;font-family:var(--display);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;padding:14px 32px;border:1px solid var(--kinpaku-dim);color:var(--kinpaku);transition:all .4s}
+.svc-btn:hover{background:var(--kinpaku);color:var(--sumi)}
+.svc-limit{font-size:.72rem;color:var(--kinpaku-dim);margin-top:16px;font-style:italic}
+.svc.premium{border-color:rgba(184,155,90,.2);padding:56px 32px}
+.signup-form button:hover{color:var(--kinpaku-bright)}
 
 /* FOOTER */
 .footer{text-align:center;padding:80px 24px 48px}
@@ -106,18 +122,23 @@ a:hover{color:var(--kinpaku-bright)}
 .footer-links a:hover{color:var(--kinpaku)}
 .footer-copy{font-size:.68rem;color:var(--washi-dim);opacity:.25}
 
-@media(max-width:600px){html{font-size:16px}.r-past-year{font-size:clamp(3rem,18vw,6rem)}.r-cta-buttons{max-width:100%}.r-cta-card{padding:36px 24px}.about,.series,.services,.signup{padding-left:20px;padding-right:20px}.signup-form{flex-direction:column;border-bottom:none;max-width:100%}.signup-form input{border-bottom:1px solid rgba(184,155,90,.2);padding:16px 0;text-align:center}.signup-form button{padding:20px 0}.series-item{flex-wrap:wrap;gap:4px}}
+@media(max-width:600px){html{font-size:16px}.r-past-year{font-size:clamp(2.5rem,14vw,5rem)}.r-cta-buttons{max-width:100%}.r-cta-card{padding:36px 24px}.about,.series,.services{padding-left:20px;padding-right:20px}.signup-form{flex-direction:column;border-bottom:none;max-width:100%}.signup-form input{border-bottom:1px solid rgba(184,155,90,.2);padding:16px 0;text-align:center}.signup-form button{padding:20px 0}.series-item{flex-wrap:wrap;gap:4px}.svc{padding:36px 20px}.svc.premium{padding:44px 20px}}
 </style>
 </head>
 <body>
 <canvas id="rippleCanvas"></canvas>
 
-<div class="back-link"><a href="index.html">← Enter a different date</a></div>
+<!-- HEADER -->
+<header class="site-header">
+  <span class="site-header-name">Amano Saki</span>
+  <a href="index.html" class="site-header-back">← New Date</a>
+</header>
 
 <!-- PAST HIT -->
 <section class="r-section">
+  <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Your Planetary Timeline — Amano Saki</h1>
   <p class="r-past-year" id="pastYear"></p>
-  <p class="r-past-ask">Does this ring a bell?</p>
+  <p class="r-past-ask">Does this year ring a bell?</p>
   <p class="r-past-why" id="pastWhy"></p>
 </section>
 <div class="gold-line"><span></span></div>
@@ -135,12 +156,12 @@ a:hover{color:var(--kinpaku-bright)}
 <section class="r-section">
   <p class="r-today-label">Today's Transit</p>
   <p class="r-today-msg" id="todayMsg"></p>
-  <p class="r-today-return">This changes every day. Come back tomorrow.</p>
+  <p class="r-today-return">Bookmark this page. Your transit updates daily.</p>
 </section>
 <div class="gold-line"><span></span></div>
 
-<!-- CTA -->
-<section class="r-cta">
+<!-- CTA + SIGNUP (merged — 孫正義指摘: メール登録をCTA直下に) -->
+<section class="r-cta" id="signup-section">
   <div class="r-cta-card">
     <p class="r-cta-card-label">Your Planetary Timeline</p>
     <p class="r-cta-card-date" id="ctaDate"></p>
@@ -148,10 +169,18 @@ a:hover{color:var(--kinpaku-bright)}
     <div class="r-cta-card-line"></div>
     <p class="r-cta-card-quote">"It's not your fault. It's just a shift in cosmic season."</p>
   </div>
+  <div class="r-cta-signup">
+    <h2>Want the full picture?</h2>
+    <p class="r-cta-signup-sub">Get your free Planetary Snapshot — a deeper look at the transits shaping your year.</p>
+    <form class="signup-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='Sent ✓';this.querySelector('button').style.opacity='.5';this.querySelector('input').disabled=true;this.querySelector('button').disabled=true;">
+      <input type="email" name="email" autocomplete="email" placeholder="your@email.com" required>
+      <button type="submit">Send →</button>
+    </form>
+    <p class="signup-note">Free. No spam. Unsubscribe anytime.</p>
+  </div>
+  <p class="r-cta-or">or start reading now</p>
   <div class="r-cta-buttons">
-    <a href="https://www.amazon.com/dp/YOUR_ASIN" target="_blank" rel="noopener" class="r-cta-btn primary">Read the Book →</a>
-    <p class="r-cta-or">or</p>
-    <a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener" class="r-cta-btn secondary">Visit Etsy Shop →</a>
+    <a href="https://www.amazon.com/dp/B0GHSMH713" target="_blank" rel="noopener" class="r-cta-btn primary">Read Vol. 1 — $4.99 on Kindle →</a>
   </div>
   <button class="share-btn" onclick="shareResult()">Share My Timeline ↗</button>
 </section>
@@ -160,11 +189,11 @@ a:hover{color:var(--kinpaku-bright)}
 <!-- ABOUT -->
 <section class="about">
   <p class="section-tag">About</p>
-  <div class="about-portrait"><img src="amano_ten.png" alt="Amano Saki" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
+  <div class="about-portrait"><img src="amano_ten.png" alt="天 — Amano Saki calligraphy"></div>
   <p><strong>Amano Saki</strong> is a planetary data analyst.</p>
   <p>Not a fortune teller. Not a psychic. A data analyst.</p>
-  <p>After 15 years of cross-cultural research across Japan and Taiwan, she developed a method that translates complex astrological transits into plain-language timelines — showing people exactly when their hardest seasons began, why they happened, and when they end.</p>
-  <p class="about-quote">"It's not your fault.<br>It's just a shift in cosmic season."</p>
+  <p>After 15 years of cross-cultural research across Japan and Taiwan — and over 2,000 charts analyzed — she developed a method that translates complex astrological transits into plain-language timelines — showing people exactly when their hardest seasons began, why they happened, and when they end.</p>
+  <p style="font-family:var(--display);font-style:italic;font-size:1.3rem;font-weight:300;color:var(--kinpaku);margin-top:56px;line-height:1.6">"It's not your fault.<br>It's just a shift in cosmic season."</p>
 </section>
 <div class="gold-line"><span></span></div>
 
@@ -172,41 +201,40 @@ a:hover{color:var(--kinpaku-bright)}
 <section class="series">
   <p class="section-tag">The Astro-Escape Series</p>
   <div class="series-list">
-    <div class="series-item available"><span class="s-vol">01</span><span class="s-title">Narcissistic Abuse</span><a href="https://www.amazon.com/dp/YOUR_ASIN" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
-    <div class="series-item"><span class="s-vol">02</span><span class="s-title">Divorce Recovery</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">03</span><span class="s-title">Toxic Parents</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">04</span><span class="s-title">Financial Collapse</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">05</span><span class="s-title">Burnout &amp; Career Death</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">06</span><span class="s-title">Sexless Marriage</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">07</span><span class="s-title">Betrayal &amp; Broken Trust</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">08</span><span class="s-title">Grief &amp; Loss</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">09</span><span class="s-title">Addiction</span><span class="s-link soon">Soon</span></div>
-    <div class="series-item"><span class="s-vol">10</span><span class="s-title">Emotional Shutdown</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item available"><span class="s-vol">01</span><span class="s-title">The Day the Cage Breaks Open</span><a href="https://www.amazon.com/dp/B0GHSMH713" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item available"><span class="s-vol">02</span><span class="s-title">Your Divorce Was Scheduled</span><a href="https://www.amazon.com/dp/B0GS38Y82T" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item available"><span class="s-vol">03</span><span class="s-title">Your Toxic Parents Had a Planetary Reason</span><a href="https://www.amazon.com/dp/B0GS38L6S6" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item available"><span class="s-vol">04</span><span class="s-title">The Month Your Money Starts Coming Back</span><a href="https://www.amazon.com/dp/B0GS51B71Y" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item available"><span class="s-vol">05</span><span class="s-title">Your Burnout Has an Expiration Date</span><a href="https://www.amazon.com/dp/B0GS477YRR" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item"><span class="s-vol">06</span><span class="s-title">The Bedroom Went Cold on a Schedule</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">07</span><span class="s-title">You Loved Them More Than You Loved Yourself</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item available"><span class="s-vol">08</span><span class="s-title">Is This All There Is?</span><a href="https://www.amazon.com/dp/B0GS4SYNPY" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item available"><span class="s-vol">09</span><span class="s-title">The Storm Passes When the Transits Do</span><a href="https://www.amazon.com/dp/B0GS4Y2K4J" target="_blank" rel="noopener" class="s-link">Amazon →</a></div>
+    <div class="series-item"><span class="s-vol">10</span><span class="s-title">Grief &amp; Loss</span><span class="s-link soon">Soon</span></div>
+    <div class="series-item"><span class="s-vol">11</span><span class="s-title">Addiction</span><span class="s-link soon">Soon</span></div>
   </div>
+  <p class="series-note">7 of 11 volumes now available — new releases monthly</p>
 </section>
-<div class="gold-line"><span></span></div>
 
 <!-- SERVICES -->
 <section class="services">
   <p class="section-tag">Go Deeper</p>
   <div class="services-grid">
-    <div class="svc"><h3>Transit Report</h3><div class="svc-price">$29</div><p class="svc-desc">A written analysis of your planetary pressure points and their exit dates. Delivered as PDF within 48 hours.</p><ul class="svc-list"><li>Your top 3 pressure transits identified</li><li>Start and end dates for each</li><li>Plain-language explanation</li><li>PDF delivered to your inbox</li></ul><a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener" class="svc-btn">Coming Soon →</a></div>
-    <div class="svc"><h3>Personal Reading</h3><div class="svc-price">$299</div><p class="svc-desc">A complete planetary mapping of your birth chart against current transits. Five readings per month.</p><ul class="svc-list"><li>Full birth chart analysis</li><li>12-month transit timeline</li><li>Specific dates when doors open</li><li>45-minute recorded analysis</li></ul><a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener" class="svc-btn">Coming Soon →</a></div>
+    <div class="svc">
+      <h3>Transit Report</h3>
+      <div class="svc-price">$29</div>
+      <p class="svc-desc">Your top 3 planetary pressure points identified with start and end dates. Written in plain language, delivered as PDF within 48 hours.</p>
+      <a href="#signup-section" class="svc-btn">Get Notified →</a>
+    </div>
+    <div class="svc premium">
+      <h3>Personal Reading</h3>
+      <div class="svc-price">$299</div>
+      <p class="svc-desc">Complete birth chart mapped against current transits. 12-month timeline with specific dates when doors open. 45-minute recorded analysis by Amano Saki.</p>
+      <a href="#signup-section" class="svc-btn">Get Notified →</a>
+      <p class="svc-limit">Limited to 5 readings per month</p>
+    </div>
   </div>
 </section>
-<div class="gold-line"><span></span></div>
-
-<!-- SIGNUP -->
-<section class="signup">
-  <h2>Free Planetary Snapshot</h2>
-  <p class="signup-sub">Get a deeper analysis of your timeline delivered to your inbox.</p>
-  <form class="signup-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='Sent ✓';this.querySelector('button').style.opacity='.5';this.querySelector('input').disabled=true;this.querySelector('button').disabled=true;">
-    <input type="email" placeholder="your@email.com" required>
-    <button type="submit">Send →</button>
-  </form>
-  <p class="signup-note">No spam. Unsubscribe anytime.</p>
-</section>
-<div class="gold-line"><span></span></div>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -215,88 +243,58 @@ a:hover{color:var(--kinpaku-bright)}
   <div class="footer-links">
     <a href="https://www.instagram.com/amanosaki" target="_blank" rel="noopener">Instagram</a>
     <a href="mailto:hello@amanosaki.com">Contact</a>
-    <a href="https://www.etsy.com/shop/amanosaki" target="_blank" rel="noopener">Etsy</a>
+    <a href="https://www.amazon.com/s?i=digital-text&rh=p_27%3AAmano+Saki" target="_blank" rel="noopener">Amazon</a>
   </div>
   <p class="footer-copy">© 2026 Amano Saki</p>
 </footer>
 
 <script>
 function sunLongitude(month,day){
-  // Approximate: March 21 = 0° Aries
-  const daysFromEquinox=((month-3)*30.44+day-21+365)%365;
+  var daysFromEquinox=((month-3)*30.44+day-21+365)%365;
   return (daysFromEquinox/365)*360;
 }
 
 function signName(deg){
-  const signs=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+  var signs=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
   return signs[Math.floor(((deg%360)+360)%360/30)];
 }
 
-function signDegree(deg){
-  return Math.floor(((deg%360)+360)%360%30);
-}
+function saturnLong(year){return (0+(year-1996)*12.2)%360;}
+function uranusLong(year){return (300+(year-1996)*4.3)%360;}
+function plutoLong(year){return (241+(year-1996)*1.45)%360;}
 
-// Slow planet approximate positions by year (longitude in degrees)
-// Saturn ~29.5yr cycle, Uranus ~84yr, Pluto ~248yr
-function saturnLong(year){
-  // Saturn was at ~0° Aries in 1996, moves ~12.2°/yr
-  return (0+(year-1996)*12.2)%360;
-}
-function uranusLong(year){
-  // Uranus was at ~0° Aquarius in 1996, moves ~4.3°/yr
-  return (300+(year-1996)*4.3)%360;
-}
-function plutoLong(year){
-  // Pluto was at ~1° Sagittarius in 1996, moves ~1.45°/yr (varies but approx)
-  return (241+(year-1996)*1.45)%360;
-}
+function angleDiff(a,b){var d=((a-b)%360+360)%360;return d>180?360-d:d;}
 
-function angleDiff(a,b){
-  let d=((a-b)%360+360)%360;
-  return d>180?360-d:d;
-}
-
-// Find hard aspects (conjunction 0°, square 90°, opposition 180°) within orb
-function findHardAspects(sunDeg, planetFn, startYear, endYear, orb){
-  const hits=[];
-  for(let y=startYear;y<=endYear;y+=0.5){
-    const pDeg=planetFn(y);
-    const diff=angleDiff(sunDeg,pDeg);
+function findHardAspects(sunDeg,planetFn,startYear,endYear,orb){
+  var hits=[];
+  for(var y=startYear;y<=endYear;y+=0.5){
+    var pDeg=planetFn(y);
+    var diff=angleDiff(sunDeg,pDeg);
     if(diff<orb){hits.push({year:Math.round(y),type:'conjunction',planet:planetFn.name});}
     else if(Math.abs(diff-90)<orb){hits.push({year:Math.round(y),type:'square',planet:planetFn.name});}
     else if(Math.abs(diff-180)<orb){hits.push({year:Math.round(y),type:'opposition',planet:planetFn.name});}
   }
-  // Deduplicate years
-  const seen={};
-  return hits.filter(h=>{if(seen[h.year+h.type+h.planet])return false;seen[h.year+h.type+h.planet]=true;return true;});
+  var seen={};
+  return hits.filter(function(h){if(seen[h.year+h.type+h.planet])return false;seen[h.year+h.type+h.planet]=true;return true;});
 }
 
-// Find next exit date (when current hard transit ends)
 function findNextExit(sunDeg){
-  const now=2026.2;// March 2026
-  let closestExit=null;
-  let closestDist=999;
-  
-  // Check each slow planet
-  [saturnLong,uranusLong,plutoLong].forEach(fn=>{
-    for(let y=now;y<now+5;y+=0.05){
-      const pDeg=fn(y);
-      const diff=angleDiff(sunDeg,pDeg);
-      // Find when aspect is exact then fading (diff crossing 8° outbound)
-      const hardAngles=[0,90,180];
-      hardAngles.forEach(angle=>{
-        const aspectDiff=Math.abs(diff-angle);
+  var now=2026.2;
+  var closestExit=null;
+  var closestDist=999;
+  [saturnLong,uranusLong,plutoLong].forEach(function(fn){
+    for(var y=now;y<now+5;y+=0.05){
+      var pDeg=fn(y);
+      var diff=angleDiff(sunDeg,pDeg);
+      [0,90,180].forEach(function(angle){
+        var aspectDiff=Math.abs(diff-angle);
         if(aspectDiff<8){
-          // Find when it leaves 8° orb
-          for(let ey=y;ey<y+4;ey+=0.02){
-            const eDiff=angleDiff(sunDeg,fn(ey));
-            const eAspDiff=Math.abs(eDiff-angle);
+          for(var ey=y;ey<y+4;ey+=0.02){
+            var eDiff=angleDiff(sunDeg,fn(ey));
+            var eAspDiff=Math.abs(eDiff-angle);
             if(eAspDiff>8){
-              const dist=ey-now;
-              if(dist>0.05&&dist<closestDist){
-                closestDist=dist;
-                closestExit=ey;
-              }
+              var dist=ey-now;
+              if(dist>0.05&&dist<closestDist){closestDist=dist;closestExit=ey;}
               break;
             }
           }
@@ -304,42 +302,41 @@ function findNextExit(sunDeg){
       });
     }
   });
-  
-  if(!closestExit||closestDist>4) closestExit=now+0.5+Math.random()*1.5;
+  if(!closestExit||closestDist>4){
+    // Deterministic fallback based on birth data (no Math.random)
+    var seed=((sunDeg*137.5)%360)/360;
+    closestExit=now+0.4+seed*1.6;
+  }
   return closestExit;
 }
 
 function yearToDate(yearDecimal){
-  const y=Math.floor(yearDecimal);
-  const remainder=yearDecimal-y;
-  const dayOfYear=Math.floor(remainder*365);
-  const d=new Date(y,0,1);
+  var y=Math.floor(yearDecimal);
+  var remainder=yearDecimal-y;
+  var dayOfYear=Math.floor(remainder*365);
+  var d=new Date(y,0,1);
   d.setDate(d.getDate()+dayOfYear);
-  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
   return months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
 }
 
 function daysBetween(yearDecimal){
-  const now=new Date();
-  const y=Math.floor(yearDecimal);
-  const remainder=yearDecimal-y;
-  const dayOfYear=Math.floor(remainder*365);
-  const target=new Date(y,0,1);
+  var now=new Date();
+  var y=Math.floor(yearDecimal);
+  var remainder=yearDecimal-y;
+  var dayOfYear=Math.floor(remainder*365);
+  var target=new Date(y,0,1);
   target.setDate(target.getDate()+dayOfYear);
   return Math.max(0,Math.round((target-now)/(1000*60*60*24)));
 }
 
-// Today's transit message (changes daily based on moon approximation + sun sign)
 function todayMessage(sunDeg){
-  const today=new Date();
-  const dayOfYear=Math.floor((today-new Date(today.getFullYear(),0,0))/(1000*60*60*24));
-  // Moon moves ~13.2°/day from arbitrary epoch
-  const moonDeg=(dayOfYear*13.2+87)%360;
-  const moonSign=signName(moonDeg);
-  const sunSign=signName(sunDeg);
-  const diff=angleDiff(sunDeg,moonDeg);
-  
-  const messages=[
+  var today=new Date();
+  var dayOfYear=Math.floor((today-new Date(today.getFullYear(),0,0))/(1000*60*60*24));
+  var moonDeg=(dayOfYear*13.2+87)%360;
+  var moonSign=signName(moonDeg);
+  var sunSign=signName(sunDeg);
+  var messages=[
     "The Moon passes through "+moonSign+" today. A quiet current beneath your surface. Don't force decisions — let them arrive.",
     "Today's Moon in "+moonSign+" activates a hidden corner of your chart. Something you buried may ask to be seen.",
     "Moon in "+moonSign+". Your "+sunSign+" Sun feels this as a pull between what you know and what you want. Both are valid.",
@@ -353,12 +350,9 @@ function todayMessage(sunDeg){
     "With Moon transiting "+moonSign+", "+sunSign+" may feel the weight of unfinished things. You don't need to finish them today.",
     "Moon in "+moonSign+". The heaviness is architectural, not personal. The structure shifts within 36 hours."
   ];
-  
-  // Use day of year + sun degree to pick consistent-per-person daily message
-  const idx=(dayOfYear+Math.floor(sunDeg))%messages.length;
+  var idx=(dayOfYear+Math.floor(sunDeg))%messages.length;
   return messages[idx];
 }
-
 
 // Read URL params
 var params=new URLSearchParams(window.location.search);
@@ -401,9 +395,54 @@ function shareResult(){
   var exitDate=document.getElementById('exitDate').textContent;
   var text='My next door opens '+exitDate+'. When does yours?\n\nhttps://amanosaki.com';
   if(navigator.share){navigator.share({title:'Amano Saki',text:text,url:'https://amanosaki.com'}).catch(function(){});}
-  else{navigator.clipboard.writeText(text).then(function(){var b=document.querySelector('.share-btn');b.textContent='Copied ✓';setTimeout(function(){b.textContent='Share My Timeline ↗';},2000);}).catch(function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text),'_blank');});}
+  else{navigator.clipboard.writeText(text).then(function(){var b=document.querySelector('.share-btn');b.textContent='Copied ✓';setTimeout(function(){b.textContent='Share My Timeline ↗';},2000);}).catch(function(){});}
 }
 </script>
-<script src="bg.js"></script>
+<script>
+// UNDERWATER CAUSTICS (WebGL)
+(function(){
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var canvas=document.getElementById('rippleCanvas');
+var gl=canvas.getContext('webgl',{alpha:true,premultipliedAlpha:false})||canvas.getContext('experimental-webgl',{alpha:true});
+if(!gl)return;
+var W,H;
+function resize(){W=window.innerWidth;H=window.innerHeight;canvas.width=W;canvas.height=H;gl.viewport(0,0,W,H);}
+resize();window.addEventListener('resize',resize);
+var vsSource='attribute vec2 aPos;varying vec2 vUv;void main(){vUv=(aPos+1.0)*0.5;gl_Position=vec4(aPos,0.0,1.0);}';
+var fsSource='precision highp float;varying vec2 vUv;uniform float uTime;uniform vec2 uRes;uniform vec2 uMouse;vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}float snoise(vec2 v){const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1;i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);m=m*m;m=m*m;vec3 x=2.0*fract(p*C.www)-1.0;vec3 h=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.0*dot(m,g);}float caustics(vec2 uv,float t){float s=0.0;s+=snoise(uv*3.0+vec2(t*0.04,t*0.03))*0.5;s+=snoise(uv*5.0+vec2(-t*0.03,t*0.05))*0.3;s+=snoise(uv*8.0+vec2(t*0.06,-t*0.02))*0.15;s+=snoise(uv*13.0+vec2(-t*0.02,t*0.04))*0.08;float c1=abs(snoise(uv*4.0+vec2(t*0.035,-t*0.025)));float c2=abs(snoise(uv*6.0+vec2(-t*0.03,t*0.04)));float sharp=pow(1.0-c1*c2,3.0);return s*0.5+0.5+sharp*0.3;}float lightRay(vec2 uv,float t){float ray=0.0;for(int i=0;i<4;i++){float fi=float(i);float x=0.2+fi*0.2+sin(t*0.1+fi*1.5)*0.08;float width=0.06+sin(t*0.15+fi)*0.02;float intensity=exp(-pow((uv.x-x)/width,2.0));intensity*=pow(1.0-uv.y,1.5);intensity*=0.7+0.3*sin(t*0.08+fi*2.0);ray+=intensity;}return ray*0.15;}void main(){vec2 uv=vUv;float aspect=uRes.x/uRes.y;vec2 uvA=vec2(uv.x*aspect,uv.y);float t=uTime;float distort=snoise(uv*2.0+vec2(t*0.05,t*0.03))*0.006;float distort2=snoise(uv*3.0+vec2(-t*0.04,t*0.06))*0.004;vec2 dUv=uv+vec2(distort,distort2);float mouseDist=length((uv-uMouse)*vec2(aspect,1.0));float mouseGlow=exp(-mouseDist*mouseDist*8.0)*0.12;float c=caustics(uvA,t);float rays=lightRay(dUv,t);float depth=mix(0.4,0.05,pow(uv.y,0.8));float vig=1.0-pow(length((uv-0.5)*1.4),2.0)*0.5;vec3 deepGold=vec3(0.42,0.35,0.15);vec3 brightGold=vec3(0.72,0.6,0.3);vec3 whiteGold=vec3(0.9,0.82,0.55);vec3 col=vec3(0.0);float ci=c*depth*vig;col+=deepGold*ci*0.6;col+=brightGold*pow(max(ci-0.3,0.0),2.0)*1.5;col+=whiteGold*pow(max(ci-0.6,0.0),3.0)*3.0;col+=brightGold*rays*vig;col+=brightGold*mouseGlow;col+=deepGold*depth*0.05;float alpha=clamp(ci*0.35+pow(max(ci-0.4,0.0),2.0)*0.8+rays*0.6+mouseGlow*0.8,0.0,0.55);gl_FragColor=vec4(col,alpha);}';
+function cs(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+var vs=cs(gl.VERTEX_SHADER,vsSource),fs=cs(gl.FRAGMENT_SHADER,fsSource);
+var prog=gl.createProgram();gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
+var quad=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,quad);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+var aP=gl.getAttribLocation(prog,'aPos'),uT=gl.getUniformLocation(prog,'uTime'),uR=gl.getUniformLocation(prog,'uRes'),uM=gl.getUniformLocation(prog,'uMouse');
+var mX=0.5,mY=0.5,tX=0.5,tY=0.5;
+document.addEventListener('mousemove',function(e){tX=e.clientX/W;tY=1.0-e.clientY/H;});
+function loop(t){var time=t*0.001;mX+=(tX-mX)*0.03;mY+=(tY-mY)*0.03;gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.useProgram(prog);gl.bindBuffer(gl.ARRAY_BUFFER,quad);gl.enableVertexAttribArray(aP);gl.vertexAttribPointer(aP,2,gl.FLOAT,false,0,0);gl.uniform1f(uT,time);gl.uniform2f(uR,W,H);gl.uniform2f(uM,mX,mY);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);gl.disable(gl.BLEND);requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+})();
+
+// SPORES + SHOOTING STARS + NEBULAE + BIG STARS
+(function(){
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var c2=document.createElement('canvas');c2.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';document.body.insertBefore(c2,document.body.firstChild.nextSibling);var ctx=c2.getContext('2d');var W,H;function resize(){W=c2.width=window.innerWidth;H=c2.height=window.innerHeight;}resize();window.addEventListener('resize',resize);var mx=W/2,my=H/2;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
+var sporeCount=W<768?800:1600;
+var spores=[];for(var i=0;i<sporeCount;i++){var layer=Math.random();var cluster=Math.random()<0.45;var cx=Math.random()*W,cy=Math.random()*H;spores.push({x:cluster?cx+(Math.random()-0.5)*150:Math.random()*W,y:cluster?cy+(Math.random()-0.5)*150:Math.random()*H,r:0.2+layer*3.2,bvx:(Math.random()-0.5)*0.4,bvy:-0.02-Math.random()*0.22-layer*0.12,vx:0,vy:0,alpha:0.02+layer*0.3,layer:layer,phase:Math.random()*Math.PI*2,ws:0.001+Math.random()*0.01,wa:0.2+Math.random()*1.5,pp:Math.random()*Math.PI*2,ps:0.003+Math.random()*0.02,np:0.001+Math.random()*0.003,sp:Math.random()*Math.PI*2,ss:0.005+Math.random()*0.01,trail:[],tl:Math.floor(1+layer*8)});}
+var shootingStars=[];function spawnStar(){var fl=Math.random()<0.5;var a=-0.15-Math.random()*0.4;var sp=3+Math.random()*6;shootingStars.push({x:fl?-50:W+50,y:Math.random()*H*0.6,vx:fl?Math.cos(a)*sp:-Math.cos(a)*sp,vy:Math.abs(Math.sin(a)*sp*0.5),life:1.0,decay:0.003+Math.random()*0.005,len:100+Math.random()*250,width:1+Math.random()*3,bright:0.5+Math.random()*0.5});}
+setInterval(function(){if(shootingStars.length<8)spawnStar();},1000+Math.random()*2000);setTimeout(spawnStar,400);setTimeout(spawnStar,900);setTimeout(spawnStar,1500);
+var sparkles=[];
+var nebulae=[];for(var i=0;i<15;i++){nebulae.push({x:Math.random()*W,y:Math.random()*H,r:80+Math.random()*300,alpha:0.012+Math.random()*0.035,vx:(Math.random()-0.5)*0.1,vy:(Math.random()-0.5)*0.07,phase:Math.random()*Math.PI*2,ps:0.002+Math.random()*0.004,hue:Math.random()<0.25?'200,170,110':'184,155,90'});}
+var bigStars=[];for(var i=0;i<30;i++){bigStars.push({x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*2.5,alpha:0.15+Math.random()*0.55,phase:Math.random()*Math.PI*2,ps:0.01+Math.random()*0.03,tw:Math.random()*Math.PI*2,ts:0.04+Math.random()*0.12});}
+var sT=0;function getS(x,y,t){var s=0.0018;var a=Math.sin(x*s+t*0.12)*Math.cos(y*s+t*0.08)*Math.PI*2+Math.sin((x+y)*s*0.6+t*0.06)*Math.PI;return{fx:Math.cos(a)*0.35,fy:Math.sin(a)*0.35};}
+var gS=100;function bG(){var c=Math.ceil(W/gS),r=Math.ceil(H/gS);var g=new Array(c*r);for(var i=0;i<g.length;i++)g[i]=[];spores.forEach(function(p,idx){var gx=Math.floor(p.x/gS),gy=Math.floor(p.y/gS);if(gx>=0&&gx<c&&gy>=0&&gy<r)g[gy*c+gx].push(idx);});return{g:g,c:c,r:r};}
+function loop(){ctx.clearRect(0,0,W,H);sT+=0.016;
+nebulae.forEach(function(n){n.x+=n.vx;n.y+=n.vy;n.phase+=n.ps;if(n.x<-n.r)n.x=W+n.r;if(n.x>W+n.r)n.x=-n.r;if(n.y<-n.r)n.y=H+n.r;if(n.y>H+n.r)n.y=-n.r;var a=n.alpha*(0.5+0.5*Math.sin(n.phase));var g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);g.addColorStop(0,'rgba('+n.hue+','+a+')');g.addColorStop(0.4,'rgba('+n.hue+','+(a*0.4)+')');g.addColorStop(1,'rgba('+n.hue+',0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,6.283);ctx.fill();});
+bigStars.forEach(function(s){s.phase+=s.ps;s.tw+=s.ts;var a=s.alpha*(0.3+0.7*Math.sin(s.phase));var tw=Math.sin(s.tw);if(tw>0.4){var fl=s.r*10*(tw-0.4)*1.7;ctx.strokeStyle='rgba(232,224,208,'+(a*0.4)+')';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(s.x-fl,s.y);ctx.lineTo(s.x+fl,s.y);ctx.moveTo(s.x,s.y-fl);ctx.lineTo(s.x,s.y+fl);ctx.stroke();}var g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*6);g.addColorStop(0,'rgba(232,224,208,'+a+')');g.addColorStop(0.3,'rgba(184,155,90,'+(a*0.3)+')');g.addColorStop(1,'rgba(184,155,90,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(s.x,s.y,s.r*6,0,6.283);ctx.fill();ctx.fillStyle='rgba(255,250,230,'+a+')';ctx.beginPath();ctx.arc(s.x,s.y,s.r*0.6,0,6.283);ctx.fill();});
+var gr=bG();spores.forEach(function(p){var flow=getS(p.x,p.y,sT);p.phase+=p.ws;var wX=Math.sin(p.phase)*p.wa*0.04;var wY=Math.cos(p.phase*0.7)*p.wa*0.02;var sfx=0,sfy=0;var gx=Math.floor(p.x/gS),gy=Math.floor(p.y/gS);for(var dy=-1;dy<=1;dy++)for(var dx=-1;dx<=1;dx++){var nx=gx+dx,ny=gy+dy;if(nx>=0&&nx<gr.c&&ny>=0&&ny<gr.r){var cell=gr.g[ny*gr.c+nx];for(var k=0;k<cell.length&&k<2;k++){var o=spores[cell[k]];if(o===p)continue;var ddx=o.x-p.x,ddy=o.y-p.y,dd=ddx*ddx+ddy*ddy;if(dd<2000&&dd>4){var f=p.np/Math.sqrt(dd);sfx+=ddx*f;sfy+=ddy*f;}}}}var mdx=p.x-mx,mdy=p.y-my,md=Math.sqrt(mdx*mdx+mdy*mdy);var mfx=0,mfy=0;if(md<200){var f=(1-md/200)*0.6;mfx=mdx/md*f;mfy=mdy/md*f;}p.vx=p.bvx+flow.fx*0.8+wX+mfx+sfx;p.vy=p.bvy+flow.fy*0.8+wY+mfy+sfy;p.x+=p.vx;p.y+=p.vy;p.trail.push({x:p.x,y:p.y});if(p.trail.length>p.tl)p.trail.shift();if(p.y<-30){p.y=H+30;p.x=Math.random()*W;p.trail=[];}if(p.y>H+30){p.y=-30;p.x=Math.random()*W;p.trail=[];}if(p.x<-30)p.x=W+30;if(p.x>W+30)p.x=-30;p.pp+=p.ps;var pulse=0.4+0.6*Math.sin(p.pp);var a=p.alpha*pulse;p.sp+=p.ss;var r=p.r*(0.7+0.3*Math.sin(p.sp));if(a<0.01)return;if(p.trail.length>1&&r>1.8){ctx.beginPath();ctx.moveTo(p.trail[0].x,p.trail[0].y);for(var t=1;t<p.trail.length;t++)ctx.lineTo(p.trail[t].x,p.trail[t].y);ctx.strokeStyle='rgba(184,155,90,'+(a*0.1)+')';ctx.lineWidth=r*0.3;ctx.stroke();}if(r<1.2){ctx.fillStyle='rgba(200,175,105,'+a*0.7+')';ctx.fillRect(p.x-0.5,p.y-0.5,1,1);return;}if(r<2.0){ctx.fillStyle='rgba(184,155,90,'+a*0.3+')';ctx.beginPath();ctx.arc(p.x,p.y,r*2,0,6.283);ctx.fill();ctx.fillStyle='rgba(232,224,208,'+a*0.8+')';ctx.beginPath();ctx.arc(p.x,p.y,r*0.4,0,6.283);ctx.fill();return;}var gs=r*3.2;var grad=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,gs);grad.addColorStop(0,'rgba(184,155,90,'+a*0.45+')');grad.addColorStop(0.35,'rgba(184,155,90,'+a*0.1+')');grad.addColorStop(1,'rgba(184,155,90,0)');ctx.fillStyle=grad;ctx.beginPath();ctx.arc(p.x,p.y,gs,0,6.283);ctx.fill();ctx.fillStyle='rgba(232,224,208,'+a*0.85+')';ctx.beginPath();ctx.arc(p.x,p.y,Math.max(r*0.4,0.2),0,6.283);ctx.fill();});
+for(var i=shootingStars.length-1;i>=0;i--){var s=shootingStars[i];s.x+=s.vx;s.y+=s.vy;s.life-=s.decay;if(Math.random()<0.7)sparkles.push({x:s.x-s.vx*Math.random()*0.3,y:s.y-s.vy*Math.random()*0.3,vx:(Math.random()-0.5)*2.5,vy:(Math.random()-0.5)*2.5,life:0.4+Math.random()*0.6,decay:0.01+Math.random()*0.02,r:0.4+Math.random()*2});if(s.life<=0){shootingStars.splice(i,1);continue;}var a=s.life*s.bright;var spd=Math.sqrt(s.vx*s.vx+s.vy*s.vy);var nx=s.vx/spd,ny=s.vy/spd;var tx=s.x-nx*s.len*s.life,ty=s.y-ny*s.len*s.life;var g2=ctx.createLinearGradient(s.x,s.y,tx,ty);g2.addColorStop(0,'rgba(184,155,90,'+(a*0.25)+')');g2.addColorStop(0.5,'rgba(184,155,90,'+(a*0.05)+')');g2.addColorStop(1,'rgba(184,155,90,0)');ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(tx,ty);ctx.strokeStyle=g2;ctx.lineWidth=s.width*s.life*10;ctx.stroke();var g1=ctx.createLinearGradient(s.x,s.y,tx,ty);g1.addColorStop(0,'rgba(255,245,200,'+a+')');g1.addColorStop(0.08,'rgba(232,210,140,'+(a*0.8)+')');g1.addColorStop(0.35,'rgba(184,155,90,'+(a*0.3)+')');g1.addColorStop(1,'rgba(184,155,90,0)');ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(tx,ty);ctx.strokeStyle=g1;ctx.lineWidth=s.width*s.life;ctx.stroke();var hg=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,20*s.life);hg.addColorStop(0,'rgba(255,250,220,'+a+')');hg.addColorStop(0.3,'rgba(232,210,140,'+(a*0.5)+')');hg.addColorStop(1,'rgba(184,155,90,0)');ctx.fillStyle=hg;ctx.beginPath();ctx.arc(s.x,s.y,20*s.life,0,6.283);ctx.fill();ctx.fillStyle='rgba(255,255,240,'+a+')';ctx.beginPath();ctx.arc(s.x,s.y,s.width*s.life*1.5,0,6.283);ctx.fill();}
+for(var i=sparkles.length-1;i>=0;i--){var s=sparkles[i];s.x+=s.vx;s.y+=s.vy;s.vx*=0.96;s.vy*=0.96;s.life-=s.decay;if(s.life<=0){sparkles.splice(i,1);continue;}var a=s.life*0.8;var len=s.r*4*s.life;ctx.strokeStyle='rgba(232,224,208,'+(a*0.5)+')';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(s.x-len,s.y);ctx.lineTo(s.x+len,s.y);ctx.moveTo(s.x,s.y-len);ctx.lineTo(s.x,s.y+len);ctx.stroke();ctx.fillStyle='rgba(255,250,230,'+a+')';ctx.beginPath();ctx.arc(s.x,s.y,s.r*s.life,0,6.283);ctx.fill();}
+if(sparkles.length>500)sparkles.splice(0,sparkles.length-500);requestAnimationFrame(loop);}loop();
+document.addEventListener('click',function(e){for(var i=0;i<4;i++){var a=-0.5+Math.random();var sp=3+Math.random()*5;shootingStars.push({x:e.clientX,y:e.clientY,vx:Math.cos(a*3.14)*sp*(Math.random()<0.5?1:-1),vy:Math.sin(a*3.14)*sp*0.5-1.5,life:1.0,decay:0.004+Math.random()*0.007,len:80+Math.random()*180,width:1+Math.random()*2.5,bright:0.6+Math.random()*0.4});}for(var i=0;i<35;i++){var a=Math.random()*6.283;var sp=1+Math.random()*5;sparkles.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:0.5+Math.random()*0.7,decay:0.008+Math.random()*0.015,r:0.5+Math.random()*3});}});
+})();
+</script>
 </body>
 </html>
